@@ -15,17 +15,7 @@
   <a href="https://linkedin.com/in/piyush64-bit" target="_blank">
     💼 LinkedIn
   </a> •
-  <a href="https://instagram.com/piyush.codes" target="_blank">
-    📸 Instagram
-  </a>
 </p>
-
----
-
-## 📸 Preview
-
-![Portfolio Preview](https://your-gif-url-here.gif)  
-<!-- Replace this with the actual GitHub link or relative path like: public/preview.gif -->
 
 ---
 
@@ -55,21 +45,6 @@ MyPortfolio/
 ├── tailwind.config.js # Tailwind config
 ├── vite.config.ts     # Vite config
 └── package.json       # Dependencies and scripts
-
-🧑‍💻 Setup & Run Locally
-Wanna clone it and vibe on your own machine? Here's how:
-
-# 1. Clone this repo
-git clone https://github.com/Piyush64-bit/MyPortfolio.git
-
-# 2. Move into the project directory
-cd MyPortfolio
-
-# 3. Install all dependencies
-npm install
-
-# 4. Start the development server
-npm run dev
 
 
 ⭐ Show Some Love
