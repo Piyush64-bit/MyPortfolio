@@ -31,7 +31,7 @@ MyPortfolio/
 └── package.json
 
 
-🧑‍💻 Setup & Run Locally
+## 🧑‍💻 Setup & Run Locally
 Wanna clone and flex it on your own?
 
 # 1. Clone the repo
@@ -47,14 +47,14 @@ npm install
 npm run dev
 
 
-📬 Let's Connect
+## 📬 Let's Connect
 LinkedIn: Piyush Soni
 
 Instagram: @piyush.codes
 
 GitHub: @Piyush64-bit
 
-🙌 Thanks for Stopping By
+## 🙌 Thanks for Stopping By
 Feel free to ⭐ the repo if you like it — it fuels my caffeine addiction ☕
 And if you’ve got feedback, ideas, or just wanna say hi, my DMs are always open.
 
