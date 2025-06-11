@@ -29,3 +29,35 @@ MyPortfolio/
 ├── tailwind.config.js
 ├── vite.config.ts
 └── package.json
+
+---
+
+🧑‍💻 Setup & Run Locally
+Wanna clone and flex it on your own?
+
+# 1. Clone the repo
+git clone https://github.com/Piyush64-bit/MyPortfolio.git
+
+# 2. Navigate to project folder
+cd MyPortfolio
+
+# 3. Install the dependencies
+npm install
+
+# 4. Start the dev server
+npm run dev
+
+---
+
+📬 Let's Connect
+LinkedIn: Piyush Soni
+
+Instagram: @piyush.codes
+
+GitHub: @Piyush64-bit
+
+🙌 Thanks for Stopping By
+Feel free to ⭐ the repo if you like it — it fuels my caffeine addiction ☕
+And if you’ve got feedback, ideas, or just wanna say hi, my DMs are always open.
+
+
