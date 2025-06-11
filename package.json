@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "gh-pages": "^6.3.0",
     "lucide-react": "^0.344.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
@@ -29,5 +30,15 @@
     "typescript": "^5.5.3",
     "typescript-eslint": "^7.3.1",
     "vite": "^6.3.5"
-  }
+  },
+  "homepage": "https://Piyush64-bit.github.io/MyPortfolio",
+"scripts": {
+  "dev": "vite",
+  "build": "vite build",
+  "preview": "vite preview",
+  "predeploy": "npm run build",
+  "deploy": "gh-pages -d dist"
+}
+
+  
 }
