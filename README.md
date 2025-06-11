@@ -1,61 +1,80 @@
-# 🚀 MyPortfolio
+<h1 align="center">🚀 MyPortfolio</h1>
 
-Hey there! I'm **Piyush**, and this is the source code for my personal portfolio website — built with ⚡ React + 🧪 TypeScript + 🔥 Vite.  
-It’s the digital version of a “Hi, nice to meet you!” but way more *aesthetic*.
+<p align="center">
+  <b>A sleek, dark-themed developer portfolio built with modern web tech</b><br/>
+  <i>React ⚛️ + TypeScript 🧠 + Vite ⚡ + Tailwind 💨 + Framer Motion 🎞️</i>
+</p>
 
-## 🌌 Live Preview
+<p align="center">
+  <a href="https://piyush64-bit.github.io/MyPortfolio" target="_blank">
+    🔗 Live Site
+  </a> •
+  <a href="https://github.com/Piyush64-bit" target="_blank">
+    🧑‍💻 GitHub
+  </a> •
+  <a href="https://linkedin.com/in/piyush64-bit" target="_blank">
+    💼 LinkedIn
+  </a> •
+  <a href="https://instagram.com/piyush.codes" target="_blank">
+    📸 Instagram
+  </a>
+</p>
 
-Check it out here 👉 [piyush64-bit.github.io/MyPortfolio](https://piyush64-bit.github.io/MyPortfolio)
+---
+
+## 📸 Preview
+
+![Portfolio Preview](https://your-gif-url-here.gif)  
+<!-- Replace this with the actual GitHub link or relative path like: public/preview.gif -->
+
+---
 
 ## 🛠️ Tech Stack
 
-- **React** — Because modern problems need modern solutions  
-- **TypeScript** — Type safety is self-care  
-- **Vite** — Instant dev server vibes  
-- **Tailwind CSS** — Utility-first drip 💅  
-- **Framer Motion** — For them silky-smooth animations
+| Tech            | Why I Used It                                 |
+|-----------------|-----------------------------------------------|
+| **React**       | Reusable components & lightning-fast UI ⚛️   |
+| **TypeScript**  | Because type safety is ✨ self-care ✨         |
+| **Vite**        | For that ⚡ speedy dev experience              |
+| **Tailwind CSS**| Utility-first CSS = rapid styling 🧵         |
+| **Framer Motion** | Smooth animations for that wow effect 🎥 |
 
-## 📂 Project Structure
+---
+
+## 📁 Project Structure
 
 ```bash
 MyPortfolio/
-├── public/            # Static assets like favicon
+├── public/            # Static assets (favicon, preview GIF, etc.)
 ├── src/
-│   ├── assets/        # Images, icons, etc.
-│   ├── components/    # Reusable UI components
-│   ├── pages/         # Main page sections (About, Projects, etc.)
-│   ├── App.tsx        # App root
+│   ├── assets/        # Images and icons
+│   ├── components/    # UI building blocks
+│   ├── pages/         # Sections like About, Projects, Contact
+│   ├── App.tsx        # Root component
 │   └── main.tsx       # Entry point
-├── tailwind.config.js
-├── vite.config.ts
-└── package.json
+├── tailwind.config.js # Tailwind config
+├── vite.config.ts     # Vite config
+└── package.json       # Dependencies and scripts
 
+🧑‍💻 Setup & Run Locally
+Wanna clone it and vibe on your own machine? Here's how:
 
-## 🧑‍💻 Setup & Run Locally
-Wanna clone and flex it on your own?
-
-# 1. Clone the repo
+# 1. Clone this repo
 git clone https://github.com/Piyush64-bit/MyPortfolio.git
 
-# 2. Navigate to project folder
+# 2. Move into the project directory
 cd MyPortfolio
 
-# 3. Install the dependencies
+# 3. Install all dependencies
 npm install
 
-# 4. Start the dev server
+# 4. Start the development server
 npm run dev
 
 
-## 📬 Let's Connect
-LinkedIn: Piyush Soni
+⭐ Show Some Love
+If this project helped you or inspired you in any way, consider giving it a ⭐ —
+it’s like caffeine for devs ☕ and keeps the creativity flowing.
 
-Instagram: @piyush.codes
-
-GitHub: @Piyush64-bit
-
-## 🙌 Thanks for Stopping By
-Feel free to ⭐ the repo if you like it — it fuels my caffeine addiction ☕
-And if you’ve got feedback, ideas, or just wanna say hi, my DMs are always open.
-
-
+Made with ❤️, pixels & a dash of overthinking.
+— Piyush Soni
