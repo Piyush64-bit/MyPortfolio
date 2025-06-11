@@ -30,7 +30,6 @@ MyPortfolio/
 ├── vite.config.ts
 └── package.json
 
----
 
 🧑‍💻 Setup & Run Locally
 Wanna clone and flex it on your own?
@@ -47,7 +46,6 @@ npm install
 # 4. Start the dev server
 npm run dev
 
----
 
 📬 Let's Connect
 LinkedIn: Piyush Soni
