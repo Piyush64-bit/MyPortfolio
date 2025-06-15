@@ -1,72 +1,153 @@
-import React from 'react';
-import { Award, Calendar, ExternalLink, CheckCircle } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Award, Calendar, ExternalLink, CheckCircle, X } from 'lucide-react';
+import GitImage from '../assets/GIT&GITHUB.jpg';
+import TCS from '../assets/TCS.jpg';
+import Frontend from '../assets/Frontend.png';
+import DBMS from '../assets/DBMS.png';
+import Backend from '../assets/Backend.png';
 
 const Certifications: React.FC = () => {
+  const [showAll, setShowAll] = useState(false);
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+
+  useEffect(() => {
+    const handleEsc = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setSelectedImage(null);
+      }
+    };
+
+    window.addEventListener('keydown', handleEsc);
+    return () => window.removeEventListener('keydown', handleEsc);
+  }, []);
+
   const certifications = [
     {
-      title: 'Full Stack Web Development',
-      issuer: 'The Complete Web Developer Course',
-      date: '2023',
-      credentialId: 'FSWD-2023-001',
-      image: 'https://images.pexels.com/photos/1181671/pexels-photo-1181671.jpeg?auto=compress&cs=tinysrgb&w=400',
+      title: 'Frontend Development',
+      issuer: 'Groot Academy',
+      date: 'May 2025',
+      credentialId: 'GROOT/2025/2047',
+      image: Frontend,
       verifyUrl: '#',
-      skills: ['HTML', 'CSS', 'JavaScript', 'React', 'Node.js'],
+      skills: ['HTML', 'CSS', 'JavaScript', 'React.js', 'Bootstrap', 'Tailwind'],
       status: 'Active',
     },
     {
-      title: 'JavaScript Algorithms and Data Structures',
-      issuer: 'FreeCodeCamp',
-      date: '2023',
-      credentialId: 'JS-ALGO-2023-045',
-      image: 'https://images.pexels.com/photos/1181263/pexels-photo-1181263.jpeg?auto=compress&cs=tinysrgb&w=400',
+      title: 'Backend Development',
+      issuer: 'Groot Academy',
+      date: 'May 2025',
+      credentialId: 'GROOT/2025/2047',
+      image: Backend,
       verifyUrl: '#',
-      skills: ['JavaScript', 'Algorithms', 'Data Structures', 'Problem Solving'],
+      skills: ['MongoDB', 'Java', 'Spring Boot', 'Hibernate'],
       status: 'Active',
     },
     {
-      title: 'React Developer Certification',
-      issuer: 'Meta',
-      date: '2023',
-      credentialId: 'REACT-2023-789',
-      image: 'https://images.pexels.com/photos/1181244/pexels-photo-1181244.jpeg?auto=compress&cs=tinysrgb&w=400',
+      title: 'Database Management',
+      issuer: 'Groot Academy',
+      date: 'May 2025',
+      credentialId: 'GROOT/2025/2047',
+      image: DBMS,
       verifyUrl: '#',
-      skills: ['React', 'JSX', 'State Management', 'Component Architecture'],
+      skills: ['MySQL', 'MongoDB'],
       status: 'Active',
     },
     {
-      title: 'Node.js Backend Development',
-      issuer: 'MongoDB University',
-      date: '2022',
-      credentialId: 'NODE-2022-156',
-      image: 'https://images.pexels.com/photos/1181298/pexels-photo-1181298.jpeg?auto=compress&cs=tinysrgb&w=400',
+      title: 'Git & GitHub Basics',
+      issuer: 'LetsUpgrade',
+      date: 'May 2025',
+      credentialId: 'LUEGGMAR1252568',
+      image: GitImage,
       verifyUrl: '#',
-      skills: ['Node.js', 'Express.js', 'MongoDB', 'REST APIs'],
+      skills: ['Git', 'GitHub', 'Version Control'],
       status: 'Active',
     },
     {
-      title: 'Responsive Web Design',
-      issuer: 'FreeCodeCamp',
-      date: '2022',
-      credentialId: 'RWD-2022-334',
-      image: 'https://images.pexels.com/photos/1181316/pexels-photo-1181316.jpeg?auto=compress&cs=tinysrgb&w=400',
+      title: 'Designing Basics - Figma & Canva',
+      issuer: 'LetsUpgrade',
+      date: 'March 2025',
+      credentialId: 'LUEFGMAR125767, LUECNVFEB1252169',
+      image: '/certificates/letsupgrade-logo.jpg',
       verifyUrl: '#',
-      skills: ['HTML5', 'CSS3', 'Flexbox', 'Grid', 'Mobile-First Design'],
+      skills: ['UI/UX', 'Figma', 'Canva'],
       status: 'Active',
     },
     {
-      title: 'Git Version Control',
-      issuer: 'GitHub',
-      date: '2022',
-      credentialId: 'GIT-2022-567',
-      image: 'https://images.pexels.com/photos/1181354/pexels-photo-1181354.jpeg?auto=compress&cs=tinysrgb&w=400',
+      title: 'Communication Skill',
+      issuer: 'TCS iON',
+      date: 'May 2025',
+      credentialId: '91306-28399817-1016',
+      image: TCS,
       verifyUrl: '#',
-      skills: ['Git', 'GitHub', 'Version Control', 'Collaboration'],
+      skills: ['Communication', 'Networking', 'Team Collaboration', 'Community Engagement'],
+      status: 'Active',
+    },
+    {
+      title: 'HTML, CSS & JS Bootcamp',
+      issuer: 'LetsUpgrade',
+      date: 'March 2025',
+      credentialId: 'LUEHTMLMAR1251990, LUEJSMAR125103',
+      image: '/certificates/letsupgrade-logo.jpg',
+      verifyUrl: '#',
+      skills: ['JavaScript', 'CSS', 'HTML5'],
+      status: 'Active',
+    },
+    {
+      title: 'Prompt Engineering',
+      issuer: 'Freedom With AI',
+      date: 'March 2025',
+      credentialId: '',
+      image: '/certificates/freedom-ai-logo.jpg',
+      verifyUrl: '#',
+      skills: ['Generative AI', 'LLM', 'ChatGPT', 'OpenAI GPT-4', 'Prompt Engineering'],
+      status: 'Active',
+    },
+    {
+      title: 'AI Tools Workshop',
+      issuer: 'Be10x',
+      date: 'December 2024',
+      credentialId: '',
+      image: '/certificates/be10x-logo.jpg',
+      verifyUrl: '#',
+      skills: ['Generative AI', 'ChatGPT'],
+      status: 'Active',
+    },
+    {
+      title: 'AI & ML Techniques',
+      issuer: 'IIT Guwahati',
+      date: 'July 2024',
+      credentialId: 'EICT/107/2024-25/TP/011',
+      image: '/certificates/iitg-logo.jpg',
+      verifyUrl: '#',
+      skills: ['AI', 'Machine Learning'],
+      status: 'Active',
+    },
+    {
+      title: 'Java Core',
+      issuer: 'Learn and Build',
+      date: 'August 2023',
+      credentialId: 'LNBID : IN23PM11246798920',
+      image: '/certificates/learnandbuild-logo.jpg',
+      verifyUrl: '#',
+      skills: ['Core Java'],
+      status: 'Active',
+    },
+    {
+      title: 'C++ Programming',
+      issuer: 'Bodacious IT Hub',
+      date: 'January 2023',
+      credentialId: '',
+      image: '/certificates/bodacious-logo.jpg',
+      verifyUrl: '#',
+      skills: ['C++'],
       status: 'Active',
     },
   ];
 
+  const visibleCerts = showAll ? certifications : certifications.slice(0, 6);
+
   return (
-    <section id="certifications" className="py-20 bg-gray-100 dark:bg-gray-800">
+    <section id="certifications" className="py-20 bg-gradient-to-b from-black to-gray-900 relative z-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white mb-4">
@@ -78,7 +159,7 @@ const Certifications: React.FC = () => {
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {certifications.map((cert, index) => (
+          {visibleCerts.map((cert, index) => (
             <div
               key={index}
               className="group bg-white dark:bg-gray-900 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl hover:shadow-cyan-500/20 transition-all duration-300 hover:scale-105"
@@ -87,7 +168,8 @@ const Certifications: React.FC = () => {
                 <img
                   src={cert.image}
                   alt={cert.title}
-                  className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
+                  onClick={() => setSelectedImage(cert.image)}
+                  className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500 cursor-pointer"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                 <div className="absolute top-4 right-4">
@@ -155,6 +237,15 @@ const Certifications: React.FC = () => {
           ))}
         </div>
 
+        <div className="mt-10 text-center">
+          <button
+            onClick={() => setShowAll(!showAll)}
+            className="mt-6 inline-block px-6 py-2 bg-cyan-500 hover:bg-cyan-600 text-white font-medium rounded-full transition duration-300"
+          >
+            {showAll ? 'View Less' : 'View More'}
+          </button>
+        </div>
+
         <div className="mt-16 text-center">
           <div className="inline-flex items-center space-x-4 bg-white dark:bg-gray-900 rounded-2xl px-8 py-6 shadow-lg">
             <div className="flex items-center justify-center w-12 h-12 bg-gradient-to-br from-cyan-400 to-purple-500 rounded-xl">
@@ -171,6 +262,22 @@ const Certifications: React.FC = () => {
           </div>
         </div>
       </div>
+
+      {selectedImage && (
+        <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center animate-fade-in">
+          <button
+            onClick={() => setSelectedImage(null)}
+            className="absolute top-6 right-6 text-white bg-red-500 hover:bg-red-600 rounded-full p-2 transition"
+          >
+            <X size={20} />
+          </button>
+          <img
+            src={selectedImage}
+            alt="Full Certificate"
+            className="max-w-3xl max-h-[80vh] object-contain rounded-xl shadow-xl transition-transform duration-500 scale-100 animate-zoom-in"
+          />
+        </div>
+      )}
     </section>
   );
 };

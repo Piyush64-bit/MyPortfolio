@@ -7,6 +7,7 @@ import Certifications from './components/Certifications';
 import Projects from './components/Projects';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import LoaderWrapper from './components/LoaderWrapper';
 
 function App() {
   const [activeSection, setActiveSection] = useState('home');
@@ -35,6 +36,7 @@ function App() {
 
   return (
     <div className="dark">
+      <LoaderWrapper>
       <Navigation activeSection={activeSection} setActiveSection={setActiveSection} />
       <Hero />
       <About />
@@ -43,6 +45,7 @@ function App() {
       <Projects />
       <Contact />
       <Footer />
+      </LoaderWrapper>
     </div>
   );
 }

@@ -1,75 +1,185 @@
-import React from 'react';
-import { Code, Coffee, Heart, Zap } from 'lucide-react';
+"use client";
+import React from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { Code, Coffee, Heart, Zap } from "lucide-react";
+
+const stats = [
+  { icon: Code, number: "50+", label: "Projects Completed" },
+  { icon: Coffee, number: "1000+", label: "Cups of Coffee" },
+  { icon: Heart, number: "3+", label: "Years in Tech" },
+  { icon: Zap, number: "∞", label: "Passion for Learning" },
+];
+
+const timeline = [
+  {
+    year: "2022",
+    event: "Started Programming Journey (C/C++) @ Bodacious IT Hub",
+  },
+  { year: "2023", event: "Core Java Internship @ Learn & Build" },
+  { year: "2024", event: "AI/ML Internship @ IIT Guwahati" },
+  { year: "2025", event: "Java Full Stack Intern @ Groot Software" },
+];
+
+const skills = [
+  "React",
+  "TypeScript",
+  "Node.js",
+  "MongoDB",
+  "Next.js",
+  "Tailwind CSS",
+  "Framer Motion",
+];
+
+const fadeIn = (direction = "up", delay = 0) => ({
+  hidden: { opacity: 0, y: direction === "up" ? 40 : -40 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, delay } },
+});
 
 const About: React.FC = () => {
-  const stats = [
-    { icon: Code, number: '50+', label: 'Projects Completed' },
-    { icon: Coffee, number: '1000+', label: 'Cups of Coffee' },
-    { icon: Heart, number: '3', label: 'Years Experience' },
-    { icon: Zap, number: '24/7', label: 'Always Learning' },
-  ];
+  const { scrollYProgress } = useScroll();
+  const y = useTransform(scrollYProgress, [0, 1], [0, -100]);
 
   return (
-    <section id="about" className="py-20 bg-gray-100 dark:bg-gray-900">
+    <section
+      id="about"
+      className="py-20 bg-[#050505] text-white overflow-hidden relative"
+    >
+      {/* Background Animation */}
+      <div className="absolute inset-0 -z-10">
+        <div className="absolute top-1/3 left-1/4 w-72 h-72 bg-purple-500/10 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute bottom-1/4 right-1/3 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl animate-pulse delay-1000" />
+        <div className="absolute top-0 right-0 w-64 h-64 bg-pink-500/10 rounded-full blur-3xl animate-pulse delay-2000" />
+      </div>
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-            About <span className="bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">Me</span>
+        {/* Heading */}
+        <motion.div
+          className="text-center mb-16"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={fadeIn("up", 0.2)}
+        >
+          <h2 className="text-4xl sm:text-5xl font-bold mb-4">
+            About {" "}
+            <span className="bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">
+              Me
+            </span>
           </h2>
-          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-            Passionate developer who loves turning complex problems into simple, beautiful solutions
+          <p className="text-lg text-gray-400 max-w-2xl mx-auto">
+            Full-stack developer passionate about building clean, scalable web
+            applications.
           </p>
-        </div>
+        </motion.div>
 
+        {/* Profile & Bio */}
         <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
-          <div className="space-y-6">
-            <div className="prose prose-lg dark:prose-invert">
-              <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                I'm a full-stack developer with a passion for creating exceptional digital experiences. 
-                My journey began with curiosity about how websites work, and it has evolved into a 
-                deep love for crafting clean, efficient, and user-friendly applications.
-              </p>
-              <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                I specialize in modern web technologies including React, TypeScript, Node.js, and cloud platforms. 
-                I believe in writing clean, maintainable code and creating intuitive user interfaces that 
-                solve real-world problems.
-              </p>
-              <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                When I'm not coding, you'll find me exploring new technologies, contributing to open-source 
-                projects, or enjoying a good book with a cup of coffee.
+          <motion.div
+            className="space-y-6"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeIn("up", 0.3)}
+          >
+            <div className="prose prose-lg text-gray-300 dark:prose-invert">
+              <p>
+                I specialize in modern web development using React, TypeScript,
+                and cloud-native tools. I'm continuously learning and leveling
+                up.
               </p>
             </div>
-          </div>
+          </motion.div>
 
-          <div className="relative">
-            <div className="aspect-square bg-gradient-to-br from-cyan-400 to-purple-500 rounded-3xl p-1">
-              <div className="w-full h-full bg-gray-900 rounded-3xl flex items-center justify-center">
-                <div className="text-center">
-                  <div className="w-32 h-32 bg-gradient-to-br from-cyan-400 to-purple-500 rounded-full mx-auto mb-4 flex items-center justify-center">
-                    <img src="src\assets\Profile.jpg" className="w-32 h-32 rounded-full" alt="ProfilePic" />
-                  </div>
-                  <h3 className="text-2xl font-bold text-white mb-2">Piyush Soni</h3>
-                  <p className="text-gray-300">Full Stack Developer</p>
+          {/* Profile Card */}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeIn("up", 0.4)}
+            className="relative"
+          >
+            <motion.div
+              className="aspect-square bg-gradient-to-br from-cyan-400 to-purple-500 rounded-3xl p-1"
+              whileHover={{ rotateY: 10, rotateX: 5 }}
+              transition={{ type: "spring", stiffness: 100 }}
+            >
+              <div className="w-full h-full bg-gray-900 rounded-2xl flex flex-col items-center justify-center p-4">
+                <div className="w-24 h-24 rounded-full mb-4 overflow-hidden flex items-center justify-center border-4 border-cyan-400 shadow-lg shadow-cyan-500/20 hover:shadow-cyan-500/40 transition-shadow">
+                  <img
+                    src="src/assets/Profile.jpg"
+                    className="w-full h-full object-cover"
+                    alt="ProfilePic"
+                  />
                 </div>
+                <h3 className="text-2xl font-bold text-white mb-1">
+                  Piyush Soni
+                </h3>
+                <p className="text-gray-400 text-sm">Full Stack Developer</p>
               </div>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+        {/* Skills */}
+        <motion.div className="flex flex-wrap justify-center gap-4 mb-16">
+          {skills.map((skill, index) => (
+            <motion.span
+              key={index}
+              className="px-4 py-2 rounded-full bg-gradient-to-r from-cyan-500 to-purple-500 text-white font-medium shadow-md hover:shadow-lg hover:scale-105 transition-all"
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.4, delay: index * 0.1 }}
+            >
+              {skill}
+            </motion.span>
+          ))}
+        </motion.div>
+
+        {/* Stats */}
+        <motion.div
+          className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={fadeIn("up", 0.5)}
+        >
           {stats.map((stat, index) => (
-            <div
+            <motion.div
               key={index}
               className="text-center group hover:scale-105 transition-transform duration-300"
+              whileHover={{ rotate: 6 }}
             >
-              <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-cyan-400 to-purple-500 rounded-2xl mb-4 group-hover:rotate-12 transition-transform duration-300">
+              <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-cyan-400 to-purple-500 rounded-2xl mb-4">
                 <stat.icon size={24} className="text-white" />
               </div>
-              <div className="text-3xl font-bold text-gray-900 dark:text-white mb-1">{stat.number}</div>
-              <div className="text-gray-600 dark:text-gray-400 text-sm">{stat.label}</div>
-            </div>
+              <div className="text-3xl font-bold text-white mb-1">
+                {stat.number}
+              </div>
+              <div className="text-gray-400 text-sm">{stat.label}</div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
+
+        {/* Timeline */}
+        <motion.div
+          style={{ y }}
+          className="border-l-4 border-cyan-500 pl-6 space-y-10"
+        >
+          {timeline.map((item, index) => (
+            <motion.div
+              key={index}
+              className="relative"
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.2 }}
+              viewport={{ once: true }}
+            >
+              <div className="absolute w-3 h-3 bg-cyan-500 rounded-full -left-[1.6rem] top-1.5" />
+              <p className="text-white font-semibold">{item.year}</p>
+              <p className="text-gray-300">{item.event}</p>
+            </motion.div>
+          ))}
+        </motion.div>
       </div>
     </section>
   );
