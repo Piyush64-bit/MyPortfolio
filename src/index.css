@@ -8,7 +8,7 @@
   }
   
   body {
-    @apply bg-black text-white;
+    @apply bg-white dark:bg-black text-gray-900 dark:text-white transition-colors duration-500;
   }
 }
 
@@ -24,6 +24,10 @@
   
   .animate-blink {
     animation: blink 1s infinite;
+  }
+  
+  .animate-zoom-in {
+    animation: zoomIn 0.3s ease-out;
   }
   
   @keyframes fadeIn {
@@ -57,6 +61,17 @@
       opacity: 0;
     }
   }
+  
+  @keyframes zoomIn {
+    from {
+      opacity: 0;
+      transform: scale(0.8);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
 }
 
 /* Custom scrollbar */
@@ -65,15 +80,15 @@
 }
 
 ::-webkit-scrollbar-track {
-  @apply bg-gray-900;
+  @apply bg-gray-200 dark:bg-gray-900;
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-gradient-to-b from-cyan-400 to-purple-500 rounded-full;
+  @apply bg-gradient-to-b from-cyan-600 to-purple-600 dark:from-cyan-400 dark:to-purple-500 rounded-full;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  @apply from-cyan-300 to-purple-400;
+  @apply from-cyan-700 to-purple-700 dark:from-cyan-300 dark:to-purple-400;
 }
 
 /* Smooth transitions for all interactive elements */
@@ -82,4 +97,3 @@
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
 }
-

@@ -147,11 +147,11 @@ const Certifications: React.FC = () => {
   const visibleCerts = showAll ? certifications : certifications.slice(0, 6);
 
   return (
-    <section id="certifications" className="py-20 bg-gradient-to-b from-black to-gray-900 relative z-10">
+    <section id="certifications" className="py-20 bg-gradient-to-b from-gray-100 to-white dark:from-black dark:to-gray-900 relative z-10 transition-colors duration-500">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-            Professional <span className="bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">Certifications</span>
+            Professional <span className="bg-gradient-to-r from-cyan-600 to-purple-600 dark:from-cyan-400 dark:to-purple-500 bg-clip-text text-transparent">Certifications</span>
           </h2>
           <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
             Validated expertise and continuous learning in cutting-edge technologies
@@ -162,7 +162,7 @@ const Certifications: React.FC = () => {
           {visibleCerts.map((cert, index) => (
             <div
               key={index}
-              className="group bg-white dark:bg-gray-900 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl hover:shadow-cyan-500/20 transition-all duration-300 hover:scale-105"
+              className="group bg-white dark:bg-gray-900 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl hover:shadow-cyan-500/20 transition-all duration-300 hover:scale-105 border border-gray-200/50 dark:border-gray-700/50"
             >
               <div className="relative overflow-hidden">
                 <img
@@ -189,7 +189,7 @@ const Certifications: React.FC = () => {
               <div className="p-6">
                 <div className="flex items-start justify-between mb-3">
                   <div className="flex-1">
-                    <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-1 group-hover:text-cyan-400 transition-colors duration-300">
+                    <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-1 group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition-colors duration-300">
                       {cert.title}
                     </h3>
                     <p className="text-gray-600 dark:text-gray-400 text-sm font-medium">
@@ -227,7 +227,7 @@ const Certifications: React.FC = () => {
                   href={cert.verifyUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center space-x-2 text-cyan-400 hover:text-cyan-300 text-sm font-medium transition-colors duration-300 group/link"
+                  className="inline-flex items-center space-x-2 text-cyan-600 dark:text-cyan-400 hover:text-cyan-700 dark:hover:text-cyan-300 text-sm font-medium transition-colors duration-300 group/link"
                 >
                   <span>Verify Credential</span>
                   <ExternalLink size={14} className="group-hover/link:translate-x-1 transition-transform duration-300" />
@@ -240,15 +240,15 @@ const Certifications: React.FC = () => {
         <div className="mt-10 text-center">
           <button
             onClick={() => setShowAll(!showAll)}
-            className="mt-6 inline-block px-6 py-2 bg-cyan-500 hover:bg-cyan-600 text-white font-medium rounded-full transition duration-300"
+            className="mt-6 inline-block px-6 py-2 bg-cyan-600 hover:bg-cyan-700 dark:bg-cyan-500 dark:hover:bg-cyan-600 text-white font-medium rounded-full transition duration-300"
           >
             {showAll ? 'View Less' : 'View More'}
           </button>
         </div>
 
         <div className="mt-16 text-center">
-          <div className="inline-flex items-center space-x-4 bg-white dark:bg-gray-900 rounded-2xl px-8 py-6 shadow-lg">
-            <div className="flex items-center justify-center w-12 h-12 bg-gradient-to-br from-cyan-400 to-purple-500 rounded-xl">
+          <div className="inline-flex items-center space-x-4 bg-white dark:bg-gray-900 rounded-2xl px-8 py-6 shadow-lg border border-gray-200/50 dark:border-gray-700/50">
+            <div className="flex items-center justify-center w-12 h-12 bg-gradient-to-br from-cyan-600 to-purple-600 dark:from-cyan-400 dark:to-purple-500 rounded-xl">
               <Award size={24} className="text-white" />
             </div>
             <div className="text-left">

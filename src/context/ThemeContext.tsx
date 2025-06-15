@@ -1,25 +1,34 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import { Sun, Moon } from 'lucide-react';
 
-const ThemeContext = createContext({
-  theme: 'light',
+interface ThemeContextType {
+  theme: 'light' | 'dark';
+  toggleTheme: () => void;
+}
+
+const ThemeContext = createContext<ThemeContextType>({
+  theme: 'dark',
   toggleTheme: () => {},
 });
 
-export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
-  const [theme, setTheme] = useState('light');
+export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const [theme, setTheme] = useState<'light' | 'dark'>('dark');
 
   useEffect(() => {
-    const storedTheme = localStorage.getItem('theme') || 'light';
-    setTheme(storedTheme);
-    document.documentElement.classList.add(storedTheme);
+    // Check for saved theme preference or default to 'dark'
+    const savedTheme = localStorage.getItem('theme') as 'light' | 'dark' | null;
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const initialTheme = savedTheme || (prefersDark ? 'dark' : 'light');
+    
+    setTheme(initialTheme);
+    document.documentElement.classList.remove('light', 'dark');
+    document.documentElement.classList.add(initialTheme);
   }, []);
 
   const toggleTheme = () => {
     const newTheme = theme === 'light' ? 'dark' : 'light';
-    document.documentElement.classList.remove(theme);
-    document.documentElement.classList.add(newTheme);
     setTheme(newTheme);
+    document.documentElement.classList.remove('light', 'dark');
+    document.documentElement.classList.add(newTheme);
     localStorage.setItem('theme', newTheme);
   };
 
@@ -30,24 +39,10 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-export const useTheme = () => useContext(ThemeContext);
-
-const ThemeToggle: React.FC = () => {
-  const { theme, toggleTheme } = useTheme();
-
-  return (
-    <button
-      onClick={toggleTheme}
-      className="ml-4 p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
-      aria-label="Toggle theme"
-    >
-      {theme === 'light' ? (
-        <Moon size={18} className="text-gray-200" />
-      ) : (
-        <Sun size={18} className="text-yellow-300" />
-      )}
-    </button>
-  );
+export const useTheme = () => {
+  const context = useContext(ThemeContext);
+  if (context === undefined) {
+    throw new Error('useTheme must be used within a ThemeProvider');
+  }
+  return context;
 };
-
-export default ThemeToggle;

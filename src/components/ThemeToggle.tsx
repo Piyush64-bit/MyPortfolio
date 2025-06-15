@@ -1,35 +1,30 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Sun, Moon } from 'lucide-react';
+import { useTheme } from '../context/ThemeContext';
 
 const ThemeToggle: React.FC = () => {
-  const [theme, setTheme] = useState<'light' | 'dark'>('dark');
-
-  useEffect(() => {
-    const savedTheme = localStorage.getItem('theme') as 'light' | 'dark' | null;
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    setTheme(savedTheme || (prefersDark ? 'dark' : 'light'));
-  }, []);
-
-  useEffect(() => {
-    document.documentElement.classList.toggle('dark', theme === 'dark');
-    localStorage.setItem('theme', theme);
-  }, [theme]);
-
-  const toggleTheme = () => {
-    setTheme((prev) => (prev === 'light' ? 'dark' : 'light'));
-  };
+  const { theme, toggleTheme } = useTheme();
 
   return (
     <button
       onClick={toggleTheme}
-      className="ml-4 p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
+      className="relative p-2 rounded-full bg-white/10 dark:bg-gray-800/50 hover:bg-white/20 dark:hover:bg-gray-700/50 transition-all duration-300 border border-white/20 dark:border-gray-600"
       aria-label="Toggle theme"
     >
-      {theme === 'light' ? (
-        <Moon size={18} className="text-gray-200" />
-      ) : (
-        <Sun size={18} className="text-yellow-300" />
-      )}
+      <div className="relative w-5 h-5">
+        <Sun 
+          size={18} 
+          className={`absolute inset-0 text-yellow-500 transition-all duration-300 ${
+            theme === 'light' ? 'opacity-100 rotate-0' : 'opacity-0 rotate-90'
+          }`} 
+        />
+        <Moon 
+          size={18} 
+          className={`absolute inset-0 text-blue-400 transition-all duration-300 ${
+            theme === 'dark' ? 'opacity-100 rotate-0' : 'opacity-0 -rotate-90'
+          }`} 
+        />
+      </div>
     </button>
   );
 };
