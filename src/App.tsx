@@ -8,6 +8,7 @@ import Projects from './components/Projects';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import LoaderWrapper from './components/LoaderWrapper';
+import { ThemeProvider } from './context/ThemeContext';
 
 function App() {
   const [activeSection, setActiveSection] = useState('home');
@@ -35,18 +36,18 @@ function App() {
   }, []);
 
   return (
-    <div className="dark">
+    <ThemeProvider> 
       <LoaderWrapper>
-      <Navigation activeSection={activeSection} setActiveSection={setActiveSection} />
-      <Hero />
-      <About />
-      <Skills />
-      <Certifications />
-      <Projects />
-      <Contact />
-      <Footer />
+        <Navigation activeSection={activeSection} setActiveSection={setActiveSection} />
+        <Hero />
+        <About />
+        <Skills />
+        <Certifications />
+        <Projects />
+        <Contact />
+        <Footer />
       </LoaderWrapper>
-    </div>
+    </ThemeProvider>
   );
 }
 

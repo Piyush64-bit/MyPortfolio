@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Menu, X, Code2 } from 'lucide-react';
+import ThemeToggle from './ThemeToggle'; // 🌗 Theme toggle imported
 
 interface NavigationProps {
   activeSection: string;
@@ -45,7 +46,9 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection, setActiveSection
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6 }}
       className={`fixed top-4 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-black/70 backdrop-blur-lg border-b border-white/10' : 'bg-black/40 backdrop-blur-xl'
+        isScrolled
+          ? 'bg-black/70 backdrop-blur-lg border-b border-white/10'
+          : 'bg-black/40 backdrop-blur-xl'
       } rounded-xl mx-4 md:mx-auto max-w-5xl px-4 py-3 shadow-lg shadow-black/30`}
     >
       <div className="flex items-center justify-between">
@@ -55,7 +58,7 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection, setActiveSection
             <Code2 size={20} className="text-gray-300" />
           </div>
           <span className="text-lg font-bold text-transparent bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text">
-            Portfoilo
+            Portfolio
           </span>
         </div>
 
@@ -74,6 +77,7 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection, setActiveSection
               {item.label}
             </button>
           ))}
+          <ThemeToggle /> {/* 🌗 Dark/Light toggle */}
         </div>
 
         {/* Mobile Menu Icon */}
@@ -107,6 +111,9 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection, setActiveSection
               {item.label}
             </button>
           ))}
+          <div className="mt-2">
+            <ThemeToggle /> {/* 🌓 Toggle in mobile menu too */}
+          </div>
         </motion.div>
       )}
     </motion.nav>
