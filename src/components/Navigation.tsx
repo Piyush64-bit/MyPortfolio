@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Menu, X, Code2 } from 'lucide-react';
-import ThemeToggle from './ThemeToggle'; // 🌗 Theme toggle imported
+import ThemeToggle from './ThemeToggle';
 
 interface NavigationProps {
   activeSection: string;
@@ -47,17 +47,17 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection, setActiveSection
       transition={{ duration: 0.6 }}
       className={`fixed top-4 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? 'bg-black/70 backdrop-blur-lg border-b border-white/10'
-          : 'bg-black/40 backdrop-blur-xl'
-      } rounded-xl mx-4 md:mx-auto max-w-5xl px-4 py-3 shadow-lg shadow-black/30`}
+          ? 'bg-white/90 dark:bg-black/70 backdrop-blur-lg border border-gray-200/20 dark:border-white/10'
+          : 'bg-white/70 dark:bg-black/40 backdrop-blur-xl border border-gray-200/30 dark:border-white/20'
+      } rounded-xl mx-4 md:mx-auto max-w-5xl px-4 py-3 shadow-lg shadow-gray-500/10 dark:shadow-black/30`}
     >
       <div className="flex items-center justify-between">
         {/* Logo */}
         <div className="flex items-center gap-2">
-          <div className="p-2 rounded-lg bg-white/5 border border-white/10">
-            <Code2 size={20} className="text-gray-300" />
+          <div className="p-2 rounded-lg bg-gray-100/50 dark:bg-white/5 border border-gray-200/50 dark:border-white/10">
+            <Code2 size={20} className="text-gray-700 dark:text-gray-300" />
           </div>
-          <span className="text-lg font-bold text-transparent bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text">
+          <span className="text-lg font-bold text-transparent bg-gradient-to-r from-cyan-600 to-purple-600 dark:from-cyan-400 dark:to-purple-500 bg-clip-text">
             Portfolio
           </span>
         </div>
@@ -70,21 +70,22 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection, setActiveSection
               onClick={() => scrollToSection(item.id)}
               className={`text-sm font-medium transition-all duration-300 ${
                 activeSection === item.id
-                  ? 'text-cyan-400 border-b-2 border-cyan-400 pb-0.5'
-                  : 'text-gray-300 hover:text-white'
+                  ? 'text-cyan-600 dark:text-cyan-400 border-b-2 border-cyan-600 dark:border-cyan-400 pb-0.5'
+                  : 'text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white'
               }`}
             >
               {item.label}
             </button>
           ))}
-          <ThemeToggle /> {/* 🌗 Dark/Light toggle */}
+          <ThemeToggle />
         </div>
 
         {/* Mobile Menu Icon */}
-        <div className="md:hidden">
+        <div className="md:hidden flex items-center gap-2">
+          <ThemeToggle />
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="text-gray-300 hover:text-white transition"
+            className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition"
           >
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -96,7 +97,7 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection, setActiveSection
         <motion.div
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
-          className="md:hidden mt-4 flex flex-col gap-3 bg-black/80 backdrop-blur-lg p-4 rounded-xl"
+          className="md:hidden mt-4 flex flex-col gap-3 bg-white/90 dark:bg-black/80 backdrop-blur-lg p-4 rounded-xl border border-gray-200/50 dark:border-white/10"
         >
           {navItems.map((item) => (
             <button
@@ -104,16 +105,13 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection, setActiveSection
               onClick={() => scrollToSection(item.id)}
               className={`text-left text-sm font-medium rounded-md px-3 py-2 transition-all duration-300 ${
                 activeSection === item.id
-                  ? 'text-cyan-400 bg-gray-700'
-                  : 'text-gray-300 hover:text-white hover:bg-gray-700'
+                  ? 'text-cyan-600 dark:text-cyan-400 bg-cyan-50 dark:bg-gray-700'
+                  : 'text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-700'
               }`}
             >
               {item.label}
             </button>
           ))}
-          <div className="mt-2">
-            <ThemeToggle /> {/* 🌓 Toggle in mobile menu too */}
-          </div>
         </motion.div>
       )}
     </motion.nav>

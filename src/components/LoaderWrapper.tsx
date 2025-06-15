@@ -31,13 +31,13 @@ const LoaderWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) =>
   if (!loading) return <>{children}</>;
 
   return (
-    <div className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[#060606] text-white gap-8">
+    <div className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-white dark:bg-[#060606] text-gray-900 dark:text-white gap-8 transition-colors duration-500">
       <div className="flex space-x-4">
-        <div className="loader-dot w-5 h-5 rounded-full bg-cyan-400 animate-pulse" />
-        <div className="loader-dot w-5 h-5 rounded-full bg-purple-500 animate-pulse" />
-        <div className="loader-dot w-5 h-5 rounded-full bg-pink-500 animate-pulse" />
+        <div className="loader-dot w-5 h-5 rounded-full bg-cyan-600 dark:bg-cyan-400 animate-pulse" />
+        <div className="loader-dot w-5 h-5 rounded-full bg-purple-600 dark:bg-purple-500 animate-pulse" />
+        <div className="loader-dot w-5 h-5 rounded-full bg-pink-600 dark:bg-pink-500 animate-pulse" />
       </div>
-      <p className="loader-text text-xl tracking-wider text-gray-300">
+      <p className="loader-text text-xl tracking-wider text-gray-700 dark:text-gray-300">
         Ah shit, here we go again.
       </p>
     </div>

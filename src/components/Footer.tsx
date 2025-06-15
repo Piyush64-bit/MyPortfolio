@@ -26,15 +26,15 @@ const Footer: React.FC = () => {
   };
 
   return (
-    <footer className="bg-gray-900 border-t border-gray-800">
+    <footer className="bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 transition-colors duration-500">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className=" flex justify-between items-center">
           <div className="text-center md:text-left">
             <button
               onClick={scrollToTop}
-              className="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent hover:scale-105 transition-transform duration-300"
+              className="text-2xl font-bold bg-gradient-to-r from-cyan-600 to-purple-600 dark:from-cyan-400 dark:to-purple-500 bg-clip-text text-transparent hover:scale-105 transition-transform duration-300"
             >
-             &lt;&#47; 	&gt; Piyush Soni
+              {"</> Piyush Soni"}
             </button>
           </div>
 
@@ -45,25 +45,17 @@ const Footer: React.FC = () => {
                 href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-3 rounded-full bg-gray-800 hover:bg-gray-700 text-gray-400 hover:text-white transition-all duration-300 hover:scale-110 group"
+                className="p-3 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-all duration-300 hover:scale-110 group"
                 aria-label={link.label}
               >
                 <link.icon size={20} className="group-hover:rotate-12 transition-transform duration-300" />
               </a>
             ))}
           </div>
-
-          {/* <div className="text-center md:text-right">
-            <p className="text-gray-400 flex items-center justify-center md:justify-end space-x-1">
-              <span>Made with</span>
-              <Heart size={16} className="text-red-500 animate-pulse" />
-              <span>© {currentYear}</span>
-            </p>
-          </div> */}
         </div>
 
-        <div className="border-t border-gray-800 mt-5 pt-8 text-center">
-          <p className="text-gray-400 text-sm">
+        <div className="border-t border-gray-200 dark:border-gray-800 mt-5 pt-8 text-center">
+          <p className="text-gray-600 dark:text-gray-400 text-sm">
             © 2025 Designed & Developed by P I Y U $ H
           </p>
         </div>

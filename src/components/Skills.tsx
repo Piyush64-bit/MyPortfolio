@@ -36,16 +36,16 @@ const Skills: React.FC = () => {
   ];
 
   return (
-    <section id="skills" className="py-20 bg-black">
+    <section id="skills" className="py-20 bg-white dark:bg-black transition-colors duration-500">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-4xl sm:text-5xl font-bold text-white mb-4">
+          <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white mb-4">
             My{" "}
-            <span className="bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-cyan-600 to-purple-600 dark:from-cyan-400 dark:to-purple-500 bg-clip-text text-transparent">
               Skills
             </span>
           </h2>
-          <p className="text-xl text-gray-300 max-w-2xl mx-auto">
+          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
             Stacking tools to craft better web experiences ⚙️💻
           </p>
         </div>
@@ -54,25 +54,25 @@ const Skills: React.FC = () => {
           {skillCategories.map((category, categoryIndex) => (
             <div
               key={categoryIndex}
-              className="bg-gray-900 rounded-2xl p-8 hover:bg-gradient-to-br from-gray-800 to-gray-900 hover:shadow-xl transition-all duration-300 hover:scale-[1.03] group"
+              className="bg-gray-50 dark:bg-gray-900 rounded-2xl p-8 hover:bg-gradient-to-br from-gray-100 to-gray-50 dark:from-gray-800 dark:to-gray-900 hover:shadow-xl transition-all duration-300 hover:scale-[1.03] group border border-gray-200/50 dark:border-gray-700/50"
             >
-              <h3 className="text-2xl font-bold text-white mb-6 group-hover:text-cyan-400 transition-colors duration-300">
+              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition-colors duration-300">
                 {category.title}
               </h3>
               <div className="space-y-4">
                 {category.skills.map((skill, skillIndex) => (
                   <div key={skillIndex} className="group/skill">
                     <div className="flex justify-between mb-2">
-                      <span className="text-gray-300 font-medium group-hover/skill:text-white transition-colors duration-300">
+                      <span className="text-gray-700 dark:text-gray-300 font-medium group-hover/skill:text-gray-900 dark:group-hover/skill:text-white transition-colors duration-300">
                         {skill.name}
                       </span>
-                      <span className="text-gray-400 text-sm">
+                      <span className="text-gray-500 dark:text-gray-400 text-sm">
                         {skill.level}%
                       </span>
                     </div>
-                    <div className="w-full bg-gray-700 rounded-full h-2">
+                    <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
                       <div
-                        className="bg-gradient-to-r from-cyan-400 to-purple-500 h-2 rounded-full transition-all duration-1000 ease-out"
+                        className="bg-gradient-to-r from-cyan-600 to-purple-600 dark:from-cyan-400 dark:to-purple-500 h-2 rounded-full transition-all duration-1000 ease-out"
                         style={{ width: `${skill.level}%` }}
                       ></div>
                     </div>
