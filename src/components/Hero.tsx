@@ -1,15 +1,15 @@
-import React, { useEffect } from 'react';
-import anime from 'animejs';
-import { ChevronDown, Github, Linkedin, Mail } from 'lucide-react';
-import { useTypewriter } from 'react-simple-typewriter';
+import React, { useEffect } from "react";
+import anime from "animejs";
+import { ChevronDown, Github, Linkedin, Mail } from "lucide-react";
+import { useTypewriter } from "react-simple-typewriter";
 
 const Hero: React.FC = () => {
   const [typewriterText] = useTypewriter({
     words: [
-      'Web Developer',
-      'Backend Engineer',
-      'Full Stack Developer',
-      'Open Source Contributor',
+      "Web Developer",
+      "Backend Engineer",
+      "Full Stack Developer",
+      "Open Source Contributor",
     ],
     loop: true,
     typeSpeed: 90,
@@ -20,56 +20,56 @@ const Hero: React.FC = () => {
   // Anime.js Animations
   useEffect(() => {
     anime
-      .timeline({ easing: 'easeOutExpo', duration: 1000 })
+      .timeline({ easing: "easeOutExpo", duration: 1000 })
       .add({
-        targets: '.hero-title span',
+        targets: ".hero-title span",
         translateY: [50, 0],
         opacity: [0, 1],
         delay: anime.stagger(100),
       })
       .add(
         {
-          targets: '.hero-description',
+          targets: ".hero-description",
           opacity: [0, 1],
           translateY: [30, 0],
           duration: 800,
         },
-        '-=500'
+        "-=500"
       )
       .add(
         {
-          targets: '.social-icon',
+          targets: ".social-icon",
           scale: [0, 1],
           delay: anime.stagger(100),
           duration: 600,
         },
-        '-=600'
+        "-=600"
       )
       .add(
         {
-          targets: '.scroll-cta',
+          targets: ".scroll-cta",
           opacity: [0, 1],
           translateY: [20, 0],
           duration: 700,
         },
-        '-=400'
+        "-=400"
       );
 
     anime({
-      targets: '.bg-blur-blob',
+      targets: ".bg-blur-blob",
       scale: [1, 1.05],
-      direction: 'alternate',
+      direction: "alternate",
       loop: true,
-      easing: 'easeInOutSine',
+      easing: "easeInOutSine",
       duration: 5000,
       delay: anime.stagger(500),
     });
   }, []);
 
   const scrollToAbout = () => {
-    const aboutSection = document.getElementById('about');
+    const aboutSection = document.getElementById("about");
     if (aboutSection) {
-      aboutSection.scrollIntoView({ behavior: 'smooth' });
+      aboutSection.scrollIntoView({ behavior: "smooth" });
     }
   };
 
@@ -91,13 +91,14 @@ const Hero: React.FC = () => {
       <div className="relative z-10 text-center max-w-7xl px-4 sm:px-6 lg:px-8 space-y-8">
         <div className="space-y-4">
           <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-gray-900 dark:text-white hero-title">
-            Hi, I'm{' '}
+            Hi, I'm{" "}
             <span className="bg-gradient-to-r from-cyan-600 via-purple-600 to-cyan-600 dark:from-cyan-400 dark:via-purple-500 dark:to-cyan-400 bg-clip-text text-transparent">
               Piyush Soni
             </span>
           </h1>
           <div className="text-2xl sm:text-3xl lg:text-4xl text-gray-600 dark:text-gray-300 h-12 flex items-center justify-center">
-            <p>-&nbsp;</p> <span className="font-light">
+            <p>-&nbsp;</p>{" "}
+            <span className="font-light">
               {typewriterText}
               <span className="ml-1 bg-gradient-to-r from-cyan-600 to-purple-600 dark:from-cyan-400 dark:to-purple-400 bg-clip-text text-transparent animate-blink">
                 |
@@ -107,7 +108,8 @@ const Hero: React.FC = () => {
         </div>
 
         <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto leading-relaxed hero-description">
-          I build fast, aesthetic, and scalable web apps with code and a lot of coffee.
+          I build fast, aesthetic, and scalable web apps with code and a lot of
+          coffee.
         </p>
 
         {/* Social Links */}
@@ -131,6 +133,7 @@ const Hero: React.FC = () => {
           ))}
         </div>
 
+
         {/* Scroll Down CTA */}
         <div className="pt-12 scroll-cta">
           <button
@@ -138,7 +141,10 @@ const Hero: React.FC = () => {
             className="group flex flex-col items-center space-y-2 text-gray-600 dark:text-gray-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition-all duration-300"
           >
             <span className="text-sm font-medium">Scroll to explore</span>
-            <ChevronDown size={24} className="animate-bounce group-hover:text-cyan-600 dark:group-hover:text-cyan-400" />
+            <ChevronDown
+              size={24}
+              className="animate-bounce group-hover:text-cyan-600 dark:group-hover:text-cyan-400"
+            />
           </button>
         </div>
       </div>

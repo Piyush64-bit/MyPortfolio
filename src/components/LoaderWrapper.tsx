@@ -38,7 +38,7 @@ const LoaderWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) =>
         <div className="loader-dot w-5 h-5 rounded-full bg-pink-600 dark:bg-pink-500 animate-pulse" />
       </div>
       <p className="loader-text text-xl tracking-wider text-gray-700 dark:text-gray-300">
-        Ah shit, here we go again.
+        Ah, here we go again!
       </p>
     </div>
   );

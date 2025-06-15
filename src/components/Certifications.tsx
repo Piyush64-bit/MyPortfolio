@@ -5,6 +5,15 @@ import TCS from '../assets/TCS.jpg';
 import Frontend from '../assets/Frontend.png';
 import DBMS from '../assets/DBMS.png';
 import Backend from '../assets/Backend.png';
+import Figma from '../assets/FIGMA Bootcamp  Letsupgrade_page-0001.jpg';
+import Canva from '../assets/CANVA Bootcamp  Letsupgrade_page-0001.jpg';
+import AIML from '../assets/AI & ML  IIT G_page-0001.jpg';
+import AiTools from '../assets/AI TOOLS WORKSHOP  BE10X_page-0001.jpg';
+import Cpp from '../assets/C++ Programming  Bodacious IT Hub_page-0001.jpg';
+import corejava from '../assets/CORE JAVA  L&B_page-0001.jpg';
+import freedom from '../assets/FREEDOM WITH AI_page-0001.jpg';
+import HTML from '../assets/HTML & CSS Bootcamp  Letsupgrade_page-0001.jpg';
+import JS from '../assets/JAVA SCRIPT Bootcamp  Letsupgrade_page-0001.jpg';
 
 const Certifications: React.FC = () => {
   const [showAll, setShowAll] = useState(false);
@@ -16,10 +25,13 @@ const Certifications: React.FC = () => {
         setSelectedImage(null);
       }
     };
-
     window.addEventListener('keydown', handleEsc);
     return () => window.removeEventListener('keydown', handleEsc);
   }, []);
+
+  useEffect(() => {
+    document.body.style.overflow = selectedImage ? 'hidden' : 'auto';
+  }, [selectedImage]);
 
   const certifications = [
     {
@@ -63,13 +75,23 @@ const Certifications: React.FC = () => {
       status: 'Active',
     },
     {
-      title: 'Designing Basics - Figma & Canva',
+      title: 'Designing Basics - Figma',
       issuer: 'LetsUpgrade',
       date: 'March 2025',
-      credentialId: 'LUEFGMAR125767, LUECNVFEB1252169',
-      image: '/certificates/letsupgrade-logo.jpg',
+      credentialId: 'LUEFGMAR125767',
+      image: Figma,
       verifyUrl: '#',
-      skills: ['UI/UX', 'Figma', 'Canva'],
+      skills: ['UI/UX', 'Canva'],
+      status: 'Active',
+    },
+    {
+      title: 'Designing Basics - Canva',
+      issuer: 'LetsUpgrade',
+      date: 'March 2025',
+      credentialId: 'LUECNVFEB1252169',
+      image: Canva,
+      verifyUrl: '#',
+      skills: ['UI/UX', 'Canva'],
       status: 'Active',
     },
     {
@@ -83,13 +105,23 @@ const Certifications: React.FC = () => {
       status: 'Active',
     },
     {
-      title: 'HTML, CSS & JS Bootcamp',
+      title: 'HTML, CSS Bootcamp',
       issuer: 'LetsUpgrade',
       date: 'March 2025',
-      credentialId: 'LUEHTMLMAR1251990, LUEJSMAR125103',
-      image: '/certificates/letsupgrade-logo.jpg',
+      credentialId: 'LUEHTMLMAR1251990',
+      image: HTML,
       verifyUrl: '#',
-      skills: ['JavaScript', 'CSS', 'HTML5'],
+      skills: ['HTML5', 'CSS3'],
+      status: 'Active',
+    },
+    {
+      title: 'JS Bootcamp',
+      issuer: 'LetsUpgrade',
+      date: 'March 2025',
+      credentialId: 'LUEJSMAR125103',
+      image: JS,
+      verifyUrl: '#',
+      skills: ['JavaScript'],
       status: 'Active',
     },
     {
@@ -97,7 +129,7 @@ const Certifications: React.FC = () => {
       issuer: 'Freedom With AI',
       date: 'March 2025',
       credentialId: '',
-      image: '/certificates/freedom-ai-logo.jpg',
+      image: freedom,
       verifyUrl: '#',
       skills: ['Generative AI', 'LLM', 'ChatGPT', 'OpenAI GPT-4', 'Prompt Engineering'],
       status: 'Active',
@@ -107,7 +139,7 @@ const Certifications: React.FC = () => {
       issuer: 'Be10x',
       date: 'December 2024',
       credentialId: '',
-      image: '/certificates/be10x-logo.jpg',
+      image: AiTools,
       verifyUrl: '#',
       skills: ['Generative AI', 'ChatGPT'],
       status: 'Active',
@@ -117,7 +149,7 @@ const Certifications: React.FC = () => {
       issuer: 'IIT Guwahati',
       date: 'July 2024',
       credentialId: 'EICT/107/2024-25/TP/011',
-      image: '/certificates/iitg-logo.jpg',
+      image: AIML,
       verifyUrl: '#',
       skills: ['AI', 'Machine Learning'],
       status: 'Active',
@@ -127,7 +159,7 @@ const Certifications: React.FC = () => {
       issuer: 'Learn and Build',
       date: 'August 2023',
       credentialId: 'LNBID : IN23PM11246798920',
-      image: '/certificates/learnandbuild-logo.jpg',
+      image: corejava,
       verifyUrl: '#',
       skills: ['Core Java'],
       status: 'Active',
@@ -137,7 +169,7 @@ const Certifications: React.FC = () => {
       issuer: 'Bodacious IT Hub',
       date: 'January 2023',
       credentialId: '',
-      image: '/certificates/bodacious-logo.jpg',
+      image: Cpp,
       verifyUrl: '#',
       skills: ['C++'],
       status: 'Active',
@@ -264,18 +296,26 @@ const Certifications: React.FC = () => {
       </div>
 
       {selectedImage && (
-        <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center animate-fade-in">
-          <button
-            onClick={() => setSelectedImage(null)}
-            className="absolute top-6 right-6 text-white bg-red-500 hover:bg-red-600 rounded-full p-2 transition"
+        <div
+          className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center"
+          onClick={() => setSelectedImage(null)}
+        >
+          <div
+            className="relative"
+            onClick={(e) => e.stopPropagation()}
           >
-            <X size={20} />
-          </button>
-          <img
-            src={selectedImage}
-            alt="Full Certificate"
-            className="max-w-3xl max-h-[80vh] object-contain rounded-xl shadow-xl transition-transform duration-500 scale-100 animate-zoom-in"
-          />
+            <button
+              onClick={() => setSelectedImage(null)}
+              className="absolute top-2 right-2 text-white bg-red-500 hover:bg-red-600 rounded-full p-2 shadow-lg transition"
+            >
+              <X size={20} />
+            </button>
+            <img
+              src={selectedImage}
+              alt="Full Certificate"
+              className="max-w-[90vw] max-h-[85vh] object-contain rounded-xl shadow-2xl transition duration-500 animate-zoom-in"
+            />
+          </div>
         </div>
       )}
     </section>

@@ -41,6 +41,7 @@ export default {
         'gradient': 'gradient 3s ease infinite',
         'float': 'float 3s ease-in-out infinite',
         'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+        'zoom-in': 'zoomIn 0.3s ease-out forwards', // 🚀 Zoom-in added here
       },
       keyframes: {
         fadeIn: {
@@ -66,6 +67,16 @@ export default {
         float: {
           '0%, 100%': { transform: 'translateY(0px)' },
           '50%': { transform: 'translateY(-10px)' },
+        },
+        zoomIn: {
+          '0%': {
+            opacity: '0',
+            transform: 'scale(0.8)',
+          },
+          '100%': {
+            opacity: '1',
+            transform: 'scale(1)',
+          },
         },
       },
       backdropBlur: {
