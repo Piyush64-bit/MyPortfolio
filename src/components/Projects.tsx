@@ -37,9 +37,9 @@ const Projects: React.FC = () => {
       liveUrl: "https://tictactics.netlify.app",
     },
     {
-      title: "CSS Project One",
+      title: "A Hiking Guide",
       description:
-        "Responsive and animated website layout focusing purely on advanced CSS styling and layout structuring.",
+        "A hiking guide landing page built using advanced CSS techniques — fully responsive, animated, and JavaScript-free",
       image: LandingPage ,
       tags: ["CSS3", "HTML5"],
       githubUrl: "https://github.com/Piyush64-bit/css-project-one",
