@@ -1,22 +1,21 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import anime from 'animejs';
 import { ChevronDown, Github, Linkedin, Mail } from 'lucide-react';
+import { useTypewriter } from 'react-simple-typewriter'; // 👉 Add this import
 
 const Hero: React.FC = () => {
-  const [displayText, setDisplayText] = useState('');
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const fullText = "Full Stack Developer";
-
-  // Typing animation
-  useEffect(() => {
-    if (currentIndex < fullText.length) {
-      const timeout = setTimeout(() => {
-        setDisplayText(prev => prev + fullText[currentIndex]);
-        setCurrentIndex(prev => prev + 1);
-      }, 100);
-      return () => clearTimeout(timeout);
-    }
-  }, [currentIndex]);
+  const [typewriterText] = useTypewriter({
+    words: [
+      'Web Developer',
+      'Backend Engineer',
+      'Full Stack Developer',
+      'Open Source Contributor',
+    ],
+    loop: true,
+    typeSpeed: 90,
+    deleteSpeed: 60,
+    delaySpeed: 1500,
+  });
 
   // Anime.js Animations
   useEffect(() => {
@@ -86,7 +85,7 @@ const Hero: React.FC = () => {
         <div className="absolute bottom-[20%] left-[30%] w-64 h-64 bg-pink-500/10 rounded-full blur-3xl bg-blur-blob" />
       </div>
 
-      {/* Twinkling stars layer */}
+      {/* Twinkling stars */}
       <div className="absolute inset-0 z-0 bg-[radial-gradient(#ffffff22_1px,transparent_1px)] [background-size:20px_20px] opacity-10 animate-stars" />
 
       <div className="relative z-10 text-center max-w-7xl px-4 sm:px-6 lg:px-8 space-y-8">
@@ -98,8 +97,8 @@ const Hero: React.FC = () => {
             </span>
           </h1>
           <div className="text-2xl sm:text-3xl lg:text-4xl text-gray-300 h-12 flex items-center justify-center">
-            <span className="font-light">
-              {displayText}
+            <p>-&nbsp;</p> <span className="font-light">
+              {typewriterText}
               <span className="ml-1 bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent animate-blink">
                 |
               </span>
