@@ -1,4 +1,6 @@
+'use client';
 import React, { useState } from 'react';
+import emailjs from 'emailjs-com';
 import { Mail, MapPin, Phone, Send } from 'lucide-react';
 
 const Contact: React.FC = () => {
@@ -19,13 +21,28 @@ const Contact: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    
+
+    try {
+      await emailjs.send(
+        'service_82ynl7e', // Service ID
+        'template_i0eue28', // Template ID
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+        },
+        '41IjHjAz4PJeufHcH' // Public key
+      );
+
+      alert('Message sent successfully!');
+      setFormData({ name: '', email: '', subject: '', message: '' });
+    } catch (error) {
+      console.error('Email send error:', error);
+      alert('Oops! Something went wrong. Please try again later.');
+    }
+
     setIsSubmitting(false);
-    setFormData({ name: '', email: '', subject: '', message: '' });
-    alert('Message sent successfully!');
   };
 
   const contactInfo = [
@@ -67,9 +84,7 @@ const Contact: React.FC = () => {
             <div>
               <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Let's talk about your project</h3>
               <p className="text-gray-600 dark:text-gray-400 leading-relaxed mb-8">
-                I'm always interested in hearing about new projects and opportunities. 
-                Whether you're a company looking to hire, or you're a fellow developer 
-                wanting to collaborate, I'd love to hear from you.
+                I'm always interested in hearing about new projects and opportunities. Whether you're a company looking to hire, or you're a fellow developer wanting to collaborate, I'd love to hear from you.
               </p>
             </div>
 
@@ -99,9 +114,7 @@ const Contact: React.FC = () => {
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid sm:grid-cols-2 gap-6">
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                    Name
-                  </label>
+                  <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Name</label>
                   <input
                     type="text"
                     id="name"
@@ -114,9 +127,7 @@ const Contact: React.FC = () => {
                   />
                 </div>
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                    Email
-                  </label>
+                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Email</label>
                   <input
                     type="email"
                     id="email"
@@ -131,9 +142,7 @@ const Contact: React.FC = () => {
               </div>
 
               <div>
-                <label htmlFor="subject" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  Subject
-                </label>
+                <label htmlFor="subject" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Subject</label>
                 <input
                   type="text"
                   id="subject"
@@ -147,9 +156,7 @@ const Contact: React.FC = () => {
               </div>
 
               <div>
-                <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  Message
-                </label>
+                <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Message</label>
                 <textarea
                   id="message"
                   name="message"
@@ -180,6 +187,7 @@ const Contact: React.FC = () => {
                 )}
               </button>
             </form>
+            <div className="text-sm text-center mt-5 text-gray-500 italic">// 100% Working</div>
           </div>
         </div>
       </div>

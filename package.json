@@ -4,7 +4,9 @@
   "version": "0.0.0",
   "type": "module",
   "dependencies": {
+    "@emailjs/browser": "^4.4.1",
     "animejs": "^3.2.2",
+    "emailjs-com": "^3.2.0",
     "framer-motion": "^12.18.1",
     "gh-pages": "^6.3.0",
     "lucide-react": "^0.344.0",

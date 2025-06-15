@@ -124,10 +124,10 @@ const Hero: React.FC = () => {
               href={social.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-3 rounded-full bg-white/80 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-all duration-300 hover:scale-110 group social-icon shadow-lg dark:shadow-none border border-gray-200/50 dark:border-gray-700"
+              className="group p-3 rounded-full bg-white/80 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-transform duration-300 hover:scale-110 social-icon shadow-lg dark:shadow-none border border-gray-200/50 dark:border-gray-700"
             >
-              <span className="transition-transform duration-300 group-hover:rotate-12">
-                {social.icon}
+              <span className="transition-transform duration-300 group-hover:rotate-12 group-hover:scale-125">
+              {social.icon}
               </span>
             </a>
           ))}
