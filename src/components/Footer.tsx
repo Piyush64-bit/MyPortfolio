@@ -34,7 +34,7 @@ const Footer: React.FC = () => {
               onClick={scrollToTop}
               className="text-2xl font-bold bg-gradient-to-r from-cyan-600 to-purple-600 dark:from-cyan-400 dark:to-purple-500 bg-clip-text text-transparent hover:scale-105 transition-transform duration-300"
             >
-             <&#47; 	> Piyush Soni
+              {"</> Piyush Soni"}
             </button>
           </div>
 
@@ -65,5 +65,3 @@ const Footer: React.FC = () => {
 };
 
 export default Footer;
-  )
-}
