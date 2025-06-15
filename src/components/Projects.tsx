@@ -1,67 +1,86 @@
-import React from 'react';
-import { ExternalLink, Github } from 'lucide-react';
+import React from "react";
+import { ExternalLink, Github } from "lucide-react";
+import ChatBot from '../assets/CHATBOT.png';
+import Furnio from '../assets/FURNIO.png';
+import Ipl from '../assets/IPL.png';
+import LandingPage from '../assets/LANDING_PAGE.png';
+import Netflix from '../assets/Netflix.png';
+import TicTacToe from '../assets/TICTACTOE.png';
 
 const Projects: React.FC = () => {
   const projects = [
     {
-      title: 'Netflix Clone',
-      description: 'A clone of the popular streaming platform Netflix, featuring a responsive UI and dynamic movie listings using TMDB API.',
-      image: 'https://images.pexels.com/photos/40568/medical-appointment-doctor-healthcare-40568.jpeg?auto=compress&cs=tinysrgb&w=800',
-      tags: ['React', 'Firebase', 'TMDB API', 'Styled Components'],
-      githubUrl: 'https://github.com/Piyush64-bit/Netflix_Clone',
-      liveUrl: '#',
+      title: "Furnio - Furniture Store",
+      description:
+        "Modern furniture e-commerce platform with sleek UI, dynamic product loading, and animations using Framer Motion.",
+      image: Furnio ,
+      tags: ["React.js", "Tailwind CSS", "Framer Motion"],
+      githubUrl: "https://github.com/zencoderlaksh/furnio_project",
+      liveUrl: "#",
     },
     {
-      title: 'Tic Tac Toe Game',
-      description: 'A classic Tic Tac Toe game built using HTML, CSS, and JavaScript. Simple UI with win logic and score tracking.',
-      image: 'https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=800',
-      tags: ['HTML', 'CSS', 'JavaScript'],
-      githubUrl: 'https://github.com/Piyush64-bit/TIC-TAC-TOE_GAME',
-      liveUrl: '#',
+      title: "Netflix Clone",
+      description:
+        "A clone of the popular streaming platform Netflix, featuring a responsive UI.",
+      image: Netflix,
+      tags: ["HTML", "CSS"],
+      githubUrl: "https://github.com/Piyush64-bit/Netflix_Clone",
+      liveUrl: "https://kindaflix.netlify.app",
     },
     {
-      title: 'ChatBot',
-      description: 'AI-powered chatbot built using JavaScript. Interactive and intelligent responses to basic user inputs.',
-      image: 'https://images.pexels.com/photos/8439009/pexels-photo-8439009.jpeg?auto=compress&cs=tinysrgb&w=800',
-      tags: ['JavaScript', 'HTML', 'CSS'],
-      githubUrl: 'https://github.com/Piyush64-bit/ChatBot',
-      liveUrl: '#',
+      title: "Tic Tac Toe Game",
+      description:
+        "A classic Tic Tac Toe game built using HTML, CSS, and JavaScript. Simple UI with win logic and score tracking.",
+      image: TicTacToe ,
+      tags: ["HTML", "CSS", "JavaScript"],
+      githubUrl: "https://github.com/Piyush64-bit/TIC-TAC-TOE_GAME",
+      liveUrl: "https://tictactics.netlify.app",
     },
     {
-      title: 'IPL Scorecard',
-      description: 'Web application displaying IPL match statistics with real-time score updates and team details.',
-      image: 'https://images.pexels.com/photos/675740/pexels-photo-675740.jpeg?auto=compress&cs=tinysrgb&w=800',
-      tags: ['HTML', 'CSS', 'JavaScript'],
-      githubUrl: 'https://github.com/Piyush64-bit/IPL-Scorecard',
-      liveUrl: '#',
+      title: "CSS Project One",
+      description:
+        "Responsive and animated website layout focusing purely on advanced CSS styling and layout structuring.",
+      image: LandingPage ,
+      tags: ["CSS3", "HTML5"],
+      githubUrl: "https://github.com/Piyush64-bit/css-project-one",
+      liveUrl: "https://mycsslanding.netlify.app/",
     },
     {
-      title: 'CSS Project One',
-      description: 'Responsive and animated website layout focusing purely on advanced CSS styling and layout structuring.',
-      image: 'https://images.pexels.com/photos/374074/pexels-photo-374074.jpeg?auto=compress&cs=tinysrgb&w=800',
-      tags: ['CSS3', 'HTML5'],
-      githubUrl: 'https://github.com/Piyush64-bit/css-project-one',
-      liveUrl: '#',
+      title: "ChatBot",
+      description:
+        "AI-powered chatbot built using JavaScript. Interactive and intelligent responses to basic user inputs.",
+      image: ChatBot ,
+      tags: ["JavaScript", "HTML", "CSS"],
+      githubUrl: "https://github.com/Piyush64-bit/ChatBot",
+      liveUrl: "https://heychatbot.netlify.app/",
     },
     {
-      title: 'Furnio - Furniture Store',
-      description: 'Modern furniture e-commerce platform with sleek UI, dynamic product loading, and animations using Framer Motion.',
-      image: 'https://images.pexels.com/photos/1866149/pexels-photo-1866149.jpeg?auto=compress&cs=tinysrgb&w=800',
-      tags: ['Next.js', 'Tailwind CSS', 'Framer Motion'],
-      githubUrl: 'https://github.com/zencoderlaksh/furnio_project',
-      liveUrl: '#',
+      title: "IPL Scorecard",
+      description:
+        "Web application displaying IPL match statistics with real-time score updates and team details.",
+      image: Ipl ,
+      tags: ["HTML", "CSS", "JavaScript"],
+      githubUrl: "https://github.com/Piyush64-bit/IPL-Scorecard",
+      liveUrl: "https://iplscorecard.netlify.app",
     },
   ];
 
   return (
-    <section id="projects" className="py-20 bg-gradient-to-b from-white to-gray-100 dark:from-gray-900 dark:to-black relative z-10 transition-colors duration-500">
+    <section
+      id="projects"
+      className="py-20 bg-gradient-to-b from-white to-gray-100 dark:from-gray-900 dark:to-black relative z-10 transition-colors duration-500"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-            Featured <span className="bg-gradient-to-r from-cyan-600 to-purple-600 dark:from-cyan-400 dark:to-purple-500 bg-clip-text text-transparent">Projects</span>
+            Featured{" "}
+            <span className="bg-gradient-to-r from-cyan-600 to-purple-600 dark:from-cyan-400 dark:to-purple-500 bg-clip-text text-transparent">
+              Projects
+            </span>
           </h2>
           <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-            A collection of projects that showcase my skills and passion for development
+            A collection of projects that showcase my skills and passion for
+            development
           </p>
         </div>
 
@@ -81,12 +100,16 @@ const Projects: React.FC = () => {
                 <div className="absolute top-4 right-4 flex space-x-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <a
                     href={project.githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="p-2 bg-black bg-opacity-80 rounded-full text-white hover:text-cyan-400 transition-colors duration-200"
                   >
                     <Github size={16} />
                   </a>
                   <a
                     href={project.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="p-2 bg-black bg-opacity-80 rounded-full text-white hover:text-cyan-400 transition-colors duration-200"
                   >
                     <ExternalLink size={16} />

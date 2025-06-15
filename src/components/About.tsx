@@ -130,12 +130,12 @@ const About: React.FC = () => {
 						className="relative"
 					>
 						<motion.div
-							className="aspect-square max-w-[480px] bg-gradient-to-br from-cyan-600 to-purple-600 dark:from-cyan-400 dark:to-purple-500 rounded-xl p-1"
+							className="aspect-square max-w-[320px] sm:max-w-[400px] md:max-w-[480px] bg-gradient-to-br from-cyan-700 to-purple-700 dark:from-cyan-500 dark:to-purple-500 rounded-xl p-1 lg:ml-20"
 							whileHover={{ rotateY: 10, rotateX: 5 }}
 							transition={{ type: "spring", stiffness: 100 }}
 						>
 							<div className="w-full h-full bg-white dark:bg-gray-900 rounded-2xl flex flex-col items-center justify-center p-4">
-								<div className="w-20 h-20 rounded-full mb-3 overflow-hidden flex items-center justify-center border-[3px] border-cyan-600 dark:border-cyan-400 shadow-md shadow-cyan-500/20 hover:shadow-cyan-500/40 transition-shadow">
+								<div className="w-24 h-24 sm:w-28 sm:h-28 md:w-30 md:h-25 rounded-full mb-3 overflow-hidden flex items-center justify-center border-[3px] border-cyan-600 dark:border-cyan-500 shadow-md shadow-cyan-500/20 hover:shadow-cyan-500/40 transition-shadow">
 									<img
 										src={Profile}
 										className="w-full h-full object-cover"
