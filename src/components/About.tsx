@@ -130,7 +130,7 @@ const About: React.FC = () => {
 						className="relative"
 					>
 						<motion.div
-							className="aspect-square max-w-[320px] sm:max-w-[400px] md:max-w-[480px] bg-gradient-to-br from-cyan-700 to-purple-700 dark:from-cyan-500 dark:to-purple-500 rounded-xl p-1 lg:ml-20"
+							className="aspect-square max-w-[320px] sm:max-w-[400px] md:max-w-[480px] bg-gradient-to-br from-cyan-700 to-purple-700 dark:from-cyan-500 dark:to-purple-500 rounded-xl p-1 lg:ml-20 mx-auto"
 							whileHover={{ rotateY: 10, rotateX: 5 }}
 							transition={{ type: "spring", stiffness: 100 }}
 						>
