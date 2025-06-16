@@ -25,7 +25,7 @@ const Projects: React.FC = () => {
       image: Netflix,
       tags: ["HTML", "CSS"],
       githubUrl: "https://github.com/Piyush64-bit/Netflix_Clone",
-      liveUrl: "https://mykindaflix.netlify.app",
+      liveUrl: "https://mykindaflex.netlify.app/",
     },
     {
       title: "Tic Tac Toe Game",
