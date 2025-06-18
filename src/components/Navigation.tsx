@@ -77,6 +77,21 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection, setActiveSection
               {item.label}
             </button>
           ))}
+          
+          {/* Resume Download Button */}
+          <a
+            href="/PiyushSoni_Resume.pdf"
+            download
+            className="relative inline-flex items-center justify-center px-4 py-1.5 text-sm font-medium text-white transition bg-gradient-to-r from-cyan-600 to-purple-600 rounded-lg shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 focus:outline-none focus:ring-2 focus:ring-cyan-400"
+          >
+            <span className="z-10">Download Resume</span>
+            <motion.div
+              className="absolute inset-0 bg-white opacity-10 rounded-lg"
+              animate={{ scale: [1, 1.05, 1], opacity: [0.1, 0.15, 0.1] }}
+              transition={{ repeat: Infinity, duration: 2, ease: 'easeInOut' }}
+            />
+          </a>
+
           <ThemeToggle />
         </div>
 
@@ -112,6 +127,15 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection, setActiveSection
               {item.label}
             </button>
           ))}
+
+          {/* Resume Button for Mobile */}
+          <a
+            href="/PiyushSoni_Resume.pdf"
+            download
+            className="mt-2 text-center text-sm font-medium text-white bg-gradient-to-r from-cyan-600 to-purple-600 py-2 rounded-md shadow-md hover:scale-105 transition-transform"
+          >
+            Download Resume
+          </a>
         </motion.div>
       )}
     </motion.nav>
