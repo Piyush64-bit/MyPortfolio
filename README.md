@@ -1,3 +1,5 @@
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
+
 <h1 align="center">🚀 MyPortfolio</h1>
 
 <p align="center">
