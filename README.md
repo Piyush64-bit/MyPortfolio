@@ -8,7 +8,7 @@
 </p>
 
 <p align="center">
-  <a href="https://piyush64-bit.github.io/MyPortfolio" target="_blank">
+  <a href="https://piyushportfolio.live" target="_blank">
     🔗 Live Site
   </a> •
   <a href="https://github.com/Piyush64-bit" target="_blank">
