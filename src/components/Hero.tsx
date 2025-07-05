@@ -115,24 +115,46 @@ const Hero: React.FC = () => {
         {/* Social Links */}
         <div className="flex justify-center space-x-6 pt-6">
           {[
-            { icon: <Github size={24} />, link: 'https://github.com/piyush64-bit' },
-            { icon: <Linkedin size={24} />, link: 'https://linkedin.com/in/piyush64bit' },
-            { icon: <Mail size={24} />, link: 'mailto:piiyush.sonii@outlook.com' },
+            {
+              icon: <Github size={24} />,
+              link: "https://github.com/piyush64-bit",
+            },
+            {
+              icon: <Linkedin size={24} />,
+              link: "https://linkedin.com/in/piyush64bit",
+            },
+            {
+              icon: <Mail size={24} />,
+              link: "mailto:piiyush.sonii@outlook.com",
+            },
           ].map((social, i) => (
             <a
               key={i}
               href={social.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="group p-3 rounded-full bg-white/80 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-transform duration-300 hover:scale-110 social-icon shadow-lg dark:shadow-none border border-gray-200/50 dark:border-gray-700"
+              className="
+    group relative p-3 rounded-full 
+    bg-white/80 dark:bg-gray-800 
+    text-gray-700 dark:text-gray-300 
+    border border-gray-200/50 dark:border-gray-700 
+    shadow-lg dark:shadow-none 
+    transition-all duration-300 
+    hover:scale-110 hover:shadow-xl
+    hover:bg-gray-100 dark:hover:bg-gray-700
+    overflow-hidden
+  "
             >
-              <span className="transition-transform duration-300 group-hover:rotate-12 group-hover:scale-125">
-              {social.icon}
+              {/* subtle glow ring on hover */}
+              <span className="absolute inset-0 rounded-full bg-gradient-to-tr from-cyan-400/20 to-purple-400/20 opacity-0 group-hover:opacity-100 blur-md transition-opacity duration-300 -z-10"></span>
+
+              {/* animate icon */}
+              <span className="flex items-center justify-center transition-transform duration-300 group-hover:rotate-12 group-hover:scale-125">
+                {social.icon}
               </span>
             </a>
           ))}
         </div>
-
 
         {/* Scroll Down CTA */}
         <div className="pt-12 scroll-cta">

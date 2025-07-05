@@ -1,32 +1,35 @@
-'use client';
+"use client";
 
-import React, { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
-import { Menu, X, Code2 } from 'lucide-react';
-import ThemeToggle from './ThemeToggle';
+import React, { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import { Menu, X, Code2 } from "lucide-react";
+import ThemeToggle from "./ThemeToggle";
 
 interface NavigationProps {
   activeSection: string;
   setActiveSection: (section: string) => void;
 }
 
-const Navigation: React.FC<NavigationProps> = ({ activeSection, setActiveSection }) => {
+const Navigation: React.FC<NavigationProps> = ({
+  activeSection,
+  setActiveSection,
+}) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
   const navItems = [
-    { id: 'home', label: 'Home' },
-    { id: 'about', label: 'About' },
-    { id: 'skills', label: 'Skills' },
-    { id: 'certifications', label: 'Certifications' },
-    { id: 'projects', label: 'Projects' },
-    { id: 'contact', label: 'Contact' },
+    { id: "home", label: "Home" },
+    { id: "about", label: "About" },
+    { id: "skills", label: "Skills" },
+    { id: "certifications", label: "Certifications" },
+    { id: "projects", label: "Projects" },
+    { id: "contact", label: "Contact" },
   ];
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      element.scrollIntoView({ behavior: "smooth" });
       setActiveSection(sectionId);
       setIsMenuOpen(false);
     }
@@ -36,8 +39,8 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection, setActiveSection
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
     };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
@@ -47,8 +50,8 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection, setActiveSection
       transition={{ duration: 0.6 }}
       className={`fixed top-4 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? 'bg-white/90 dark:bg-black/70 backdrop-blur-lg border border-gray-200/20 dark:border-white/10'
-          : 'bg-white/70 dark:bg-black/40 backdrop-blur-xl border border-gray-200/30 dark:border-white/20'
+          ? "bg-white/90 dark:bg-black/70 backdrop-blur-lg border border-gray-200/20 dark:border-white/10"
+          : "bg-white/70 dark:bg-black/40 backdrop-blur-xl border border-gray-200/30 dark:border-white/20"
       } rounded-xl mx-4 md:mx-auto max-w-5xl px-4 py-3 shadow-lg shadow-gray-500/10 dark:shadow-black/30`}
     >
       <div className="flex items-center justify-between">
@@ -68,16 +71,17 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection, setActiveSection
             <button
               key={item.id}
               onClick={() => scrollToSection(item.id)}
-              className={`text-sm font-medium transition-all duration-300 ${
+              className={`relative group text-sm font-medium transition-all duration-300 ${
                 activeSection === item.id
-                  ? 'text-cyan-600 dark:text-cyan-400 border-b-2 border-cyan-600 dark:border-cyan-400 pb-0.5'
-                  : 'text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white'
+                  ? "text-cyan-600 dark:text-cyan-400"
+                  : "text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
               }`}
             >
               {item.label}
+              <span className="absolute -bottom-0.5 left-0 w-0 h-0.5 bg-gradient-to-r from-cyan-600 to-purple-600 transition-all duration-300 group-hover:w-full"></span>
             </button>
           ))}
-          
+
           {/* Resume Download Button */}
           <a
             href="/PiyushSoni_Resume.pdf"
@@ -88,7 +92,7 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection, setActiveSection
             <motion.div
               className="absolute inset-0 bg-white opacity-10 rounded-lg"
               animate={{ scale: [1, 1.05, 1], opacity: [0.1, 0.15, 0.1] }}
-              transition={{ repeat: Infinity, duration: 2, ease: 'easeInOut' }}
+              transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
             />
           </a>
 
@@ -120,8 +124,8 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection, setActiveSection
               onClick={() => scrollToSection(item.id)}
               className={`text-left text-sm font-medium rounded-md px-3 py-2 transition-all duration-300 ${
                 activeSection === item.id
-                  ? 'text-cyan-600 dark:text-cyan-400 bg-cyan-50 dark:bg-gray-700'
-                  : 'text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-700'
+                  ? "text-cyan-600 dark:text-cyan-400 bg-cyan-50 dark:bg-gray-700"
+                  : "text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
               }`}
             >
               {item.label}

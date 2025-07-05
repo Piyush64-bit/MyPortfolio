@@ -41,15 +41,31 @@ const Footer: React.FC = () => {
           <div className="flex justify-center space-x-6">
             {socialLinks.map((link, index) => (
               <a
-                key={index}
-                href={link.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-3 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-all duration-300 hover:scale-110 group"
-                aria-label={link.label}
-              >
-                <link.icon size={20} className="group-hover:rotate-12 transition-transform duration-300" />
-              </a>
+  key={index}
+  href={link.href}
+  target="_blank"
+  rel="noopener noreferrer"
+  aria-label={link.label}
+  className="
+    relative p-3 rounded-full
+    bg-gray-100 dark:bg-gray-800
+    text-gray-600 dark:text-gray-400
+    hover:bg-gray-200 dark:hover:bg-gray-700
+    hover:text-gray-900 dark:hover:text-white
+    border border-gray-200/50 dark:border-gray-700
+    shadow-lg dark:shadow-none
+    transition-all duration-300
+    hover:scale-110
+    group
+    overflow-hidden
+  "
+>
+  {/* subtle animated glow ring */}
+  <span className="absolute inset-0 rounded-full bg-gradient-to-tr from-cyan-400/20 to-purple-400/20 opacity-0 group-hover:opacity-100 blur-md transition-opacity duration-300 -z-10"></span>
+
+  <link.icon size={20} className="group-hover:rotate-12 group-hover:scale-125 transition-transform duration-300" />
+</a>
+
             ))}
           </div>
         </div>
