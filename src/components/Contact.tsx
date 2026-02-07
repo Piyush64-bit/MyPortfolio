@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import emailjs from 'emailjs-com';
 import { Mail, MapPin, Phone, Send } from 'lucide-react';
+import ShinyButton from './ui/ShinyButton';
 
 const Contact: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -24,15 +25,15 @@ const Contact: React.FC = () => {
 
     try {
       await emailjs.send(
-        'service_82ynl7e', // Service ID
-        'template_i0eue28', // Template ID
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
         {
           from_name: formData.name,
           from_email: formData.email,
           subject: formData.subject,
           message: formData.message,
         },
-        '41IjHjAz4PJeufHcH' // Public key
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
       );
 
       alert('Message sent successfully!');
@@ -67,14 +68,14 @@ const Contact: React.FC = () => {
   ];
 
   return (
-    <section id="contact" className="py-20 bg-gradient-to-b from-gray-100 to-white dark:from-black dark:to-gray-900 relative z-10 transition-colors duration-500">
+    <section id="contact" className="py-20 bg-transparent relative z-10 transition-colors duration-500">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-            Get In <span className="bg-gradient-to-r from-cyan-600 to-purple-600 dark:from-cyan-400 dark:to-purple-500 bg-clip-text text-transparent">Touch</span>
+            Let's <span className="text-brand-secondary">Connect</span>
           </h2>
           <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-            Let's work together to bring your ideas to life
+            I am ready to bring my full-stack expertise to your engineering team.
           </p>
         </div>
 
@@ -82,9 +83,9 @@ const Contact: React.FC = () => {
           {/* Contact Information */}
           <div className="space-y-8">
             <div>
-              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Let's talk about your project</h3>
+              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Open to New Opportunities</h3>
               <p className="text-gray-600 dark:text-gray-400 leading-relaxed mb-8">
-                I'm always interested in hearing about new projects and opportunities. Whether you're a company looking to hire, or you're a fellow developer wanting to collaborate, I'd love to hear from you.
+                I built this portfolio to showcase my technical capabilities to potential employers. I am actively seeking full-time roles where I can apply my skills in modern web development. If you think I'd be a good fit for your team, let's connect!
               </p>
             </div>
 
@@ -95,11 +96,11 @@ const Contact: React.FC = () => {
                   href={info.link}
                   className="flex items-center space-x-4 group hover:transform hover:translate-x-2 transition-all duration-300"
                 >
-                  <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-cyan-600 to-purple-600 dark:from-cyan-400 dark:to-purple-500 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                    <info.icon size={20} className="text-white" />
+                  <div className="flex-shrink-0 w-12 h-12 bg-white/5 border border-white/10 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 group-hover:border-brand-primary/30 group-hover:bg-brand-primary/10">
+                    <info.icon size={20} className="text-gray-300 group-hover:text-brand-secondary transition-colors" />
                   </div>
                   <div>
-                    <h4 className="text-gray-900 dark:text-white font-medium group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition-colors duration-300">
+                    <h4 className="text-gray-900 dark:text-white font-medium group-hover:text-brand-secondary transition-colors duration-300">
                       {info.title}
                     </h4>
                     <p className="text-gray-600 dark:text-gray-400">{info.details}</p>
@@ -151,7 +152,7 @@ const Contact: React.FC = () => {
                   onChange={handleInputChange}
                   required
                   className="w-full px-4 py-3 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-500 dark:focus:ring-cyan-400 focus:border-transparent transition-all duration-300"
-                  placeholder="What's this about?"
+                  placeholder="Hiring Inquiry / Job Opportunity"
                 />
               </div>
 
@@ -165,14 +166,14 @@ const Contact: React.FC = () => {
                   required
                   rows={5}
                   className="w-full px-4 py-3 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-500 dark:focus:ring-cyan-400 focus:border-transparent transition-all duration-300 resize-none"
-                  placeholder="Tell me about your project..."
+                  placeholder="Hi, I'd like to discuss a potential role..."
                 />
               </div>
 
-              <button
+              <ShinyButton
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full py-3 px-6 bg-gradient-to-r from-cyan-600 to-purple-600 dark:from-cyan-400 dark:to-purple-500 text-white font-medium rounded-lg hover:shadow-lg hover:shadow-cyan-500/25 transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
+                className="w-full justify-center bg-brand-primary/10 border-brand-primary/20 hover:bg-brand-primary/20 py-4"
               >
                 {isSubmitting ? (
                   <>
@@ -185,9 +186,8 @@ const Contact: React.FC = () => {
                     <span>Send Message</span>
                   </>
                 )}
-              </button>
+              </ShinyButton>
             </form>
-            <div className="text-sm text-center mt-5 text-gray-500 italic">// 100% Working</div>
           </div>
         </div>
       </div>

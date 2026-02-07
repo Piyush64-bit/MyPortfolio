@@ -6,32 +6,19 @@ export default {
     extend: {
       fontFamily: {
         sans: ['Inter', 'sans-serif'],
+        heading: ['Space Grotesk', 'sans-serif'],
       },
       colors: {
-        primary: {
-          50: '#f0f9ff',
-          100: '#e0f2fe',
-          200: '#bae6fd',
-          300: '#7dd3fc',
-          400: '#38bdf8',
-          500: '#0ea5e9',
-          600: '#0284c7',
-          700: '#0369a1',
-          800: '#075985',
-          900: '#0c4a6e',
+        brand: {
+          dark: '#030014', // Deep Space Black
+          primary: '#7042f8', // Electric Purple
+          secondary: '#00f3ff', // Neon Cyan
+          accent: '#2A0E61', // Deep Purple
         },
-        secondary: {
-          50: '#faf5ff',
-          100: '#f3e8ff',
-          200: '#e9d5ff',
-          300: '#d8b4fe',
-          400: '#c084fc',
-          500: '#a855f7',
-          600: '#9333ea',
-          700: '#7c3aed',
-          800: '#6b21a8',
-          900: '#581c87',
-        },
+      },
+      backgroundImage: {
+        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+        'hero-glow': 'conic-gradient(from 180deg at 50% 50%, #2a8af6 0deg, #a853ba 180deg, #e92a67 360deg)',
       },
       animation: {
         'fade-in': 'fadeIn 0.6s ease-out',
@@ -41,7 +28,9 @@ export default {
         'gradient': 'gradient 3s ease infinite',
         'float': 'float 3s ease-in-out infinite',
         'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-        'zoom-in': 'zoomIn 0.3s ease-out forwards', // 🚀 Zoom-in added here
+        'zoom-in': 'zoomIn 0.3s ease-out forwards',
+        'meteor': 'meteor 5s linear infinite',
+        'shimmer': 'shimmer 2s linear infinite',
       },
       keyframes: {
         fadeIn: {
@@ -69,14 +58,17 @@ export default {
           '50%': { transform: 'translateY(-10px)' },
         },
         zoomIn: {
-          '0%': {
-            opacity: '0',
-            transform: 'scale(0.8)',
-          },
-          '100%': {
-            opacity: '1',
-            transform: 'scale(1)',
-          },
+          '0%': { opacity: '0', transform: 'scale(0.8)' },
+          '100%': { opacity: '1', transform: 'scale(1)' },
+        },
+        meteor: {
+          '0%': { transform: 'rotate(215deg) translateX(0)', opacity: '1' },
+          '70%': { opacity: '1' },
+          '100%': { transform: 'rotate(215deg) translateX(-500px)', opacity: '0' },
+        },
+        shimmer: {
+          from: { backgroundPosition: '0 0' },
+          to: { backgroundPosition: '-200% 0' },
         },
       },
       backdropBlur: {

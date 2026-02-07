@@ -1,9 +1,9 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { motion } from "framer-motion";
-import { Menu, X, Code2 } from "lucide-react";
-import ThemeToggle from "./ThemeToggle";
+import { motion, AnimatePresence } from "framer-motion";
+import { Menu, X, Code2, Home, User, Cpu, Award, FolderGit2, Mail, Download } from "lucide-react";
+import ShinyButton from "./ui/ShinyButton";
 
 interface NavigationProps {
   activeSection: string;
@@ -18,12 +18,12 @@ const Navigation: React.FC<NavigationProps> = ({
   const [isScrolled, setIsScrolled] = useState(false);
 
   const navItems = [
-    { id: "home", label: "Home" },
-    { id: "about", label: "About" },
-    { id: "skills", label: "Skills" },
-    { id: "certifications", label: "Certifications" },
-    { id: "projects", label: "Projects" },
-    { id: "contact", label: "Contact" },
+    { id: "home", label: "Home", icon: Home },
+    { id: "about", label: "About", icon: User },
+    { id: "skills", label: "Skills", icon: Cpu },
+    { id: "certifications", label: "Certs", icon: Award },
+    { id: "projects", label: "Projects", icon: FolderGit2 },
+    { id: "contact", label: "Contact", icon: Mail },
   ];
 
   const scrollToSection = (sectionId: string) => {
@@ -37,112 +37,130 @@ const Navigation: React.FC<NavigationProps> = ({
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      setIsScrolled(window.scrollY > 20);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
-    <motion.nav
-      initial={{ y: -20, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.6 }}
-      className={`fixed top-4 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? "bg-white/90 dark:bg-black/70 backdrop-blur-lg border border-gray-200/20 dark:border-white/10"
-          : "bg-white/70 dark:bg-black/40 backdrop-blur-xl border border-gray-200/30 dark:border-white/20"
-      } rounded-xl mx-4 md:mx-auto max-w-5xl px-4 py-3 shadow-lg shadow-gray-500/10 dark:shadow-black/30`}
-    >
-      <div className="flex items-center justify-between">
-        {/* Logo */}
-        <div className="flex items-center gap-2">
-          <div className="p-2 rounded-lg bg-gray-100/50 dark:bg-white/5 border border-gray-200/50 dark:border-white/10">
-            <Code2 size={20} className="text-gray-700 dark:text-gray-300" />
+    <>
+      <motion.nav
+        initial={{ y: -100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        className={`fixed top-4 sm:top-6 left-1/2 -translate-x-1/2 z-50 w-[95%] sm:w-auto max-w-3xl transition-all duration-300`}
+      >
+        <div
+          className={`
+            flex items-center justify-between sm:justify-center gap-1 sm:gap-2 px-4 py-2 sm:px-6 sm:py-3 rounded-full
+            ${
+              isScrolled
+                ? "bg-black/80 backdrop-blur-xl border border-white/10 shadow-2xl shadow-brand-primary/10"
+                : "bg-black/50 backdrop-blur-md border border-transparent"
+            }
+          `}
+        >
+          {/* Logo - Mobile Only */}
+          <div className="flex sm:hidden items-center gap-2 mr-auto" onClick={() => scrollToSection('home')}>
+             <div className="p-1.5 rounded-lg bg-brand-primary/20">
+               <Code2 size={18} className="text-brand-secondary" />
+             </div>
+             <span className="font-bold text-white text-sm">Piyush</span>
           </div>
-          <span className="text-lg font-bold text-transparent bg-gradient-to-r from-cyan-600 to-purple-600 dark:from-cyan-400 dark:to-purple-500 bg-clip-text">
-            Portfolio
-          </span>
-        </div>
 
-        {/* Desktop Nav */}
-        <div className="hidden md:flex gap-6 items-center">
-          {navItems.map((item) => (
-            <button
-              key={item.id}
-              onClick={() => scrollToSection(item.id)}
-              className={`relative group text-sm font-medium transition-all duration-300 ${
-                activeSection === item.id
-                  ? "text-cyan-600 dark:text-cyan-400"
-                  : "text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
-              }`}
+          {/* Desktop Nav Items */}
+          <div className="hidden sm:flex items-center gap-1">
+            {navItems.map((item) => {
+              const isActive = activeSection === item.id;
+              return (
+                <button
+                  key={item.id}
+                  onClick={() => scrollToSection(item.id)}
+                  className={`
+                    relative px-4 py-2 rounded-full text-sm font-medium transition-all duration-300
+                    hover:text-white
+                    ${isActive ? "text-white" : "text-gray-400"}
+                  `}
+                >
+                  {isActive && (
+                    <motion.div
+                      layoutId="nav-pill"
+                      className="absolute inset-0 bg-white/10 rounded-full"
+                      transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                    />
+                  )}
+                  <span className="relative z-10 flex items-center gap-2">
+                    {/* <item.icon size={14} /> */}
+                    {item.label}
+                  </span>
+                </button>
+              );
+            })}
+            
+            {/* Desktop Resume Button */}
+            <ShinyButton
+              href="/PiyushSoni_Resume.pdf"
+              download
+              className="ml-2 bg-white/10 border-white/20 hover:bg-white/20"
             >
-              {item.label}
-              <span className="absolute -bottom-0.5 left-0 w-0 h-0.5 bg-gradient-to-r from-cyan-600 to-purple-600 transition-all duration-300 group-hover:w-full"></span>
-            </button>
-          ))}
+              <span>Resume</span>
+              <Download size={14} />
+            </ShinyButton>
+          </div>
 
-          {/* Resume Download Button */}
-          <a
-            href="/PiyushSoni_Resume.pdf"
-            download
-            className="relative inline-flex items-center justify-center px-4 py-1.5 text-sm font-medium text-white transition bg-gradient-to-r from-cyan-600 to-purple-600 rounded-lg shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 focus:outline-none focus:ring-2 focus:ring-cyan-400"
-          >
-            <span className="z-10">Download Resume</span>
-            <motion.div
-              className="absolute inset-0 bg-white opacity-10 rounded-lg"
-              animate={{ scale: [1, 1.05, 1], opacity: [0.1, 0.15, 0.1] }}
-              transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-            />
-          </a>
-
-          <ThemeToggle />
-        </div>
-
-        {/* Mobile Menu Icon */}
-        <div className="md:hidden flex items-center gap-2">
-          <ThemeToggle />
+          {/* Mobile Menu Toggle */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition"
+            className="sm:hidden p-2 text-white hover:bg-white/10 rounded-full transition-colors"
           >
-            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
         </div>
-      </div>
+      </motion.nav>
 
-      {/* Mobile Menu */}
-      {isMenuOpen && (
-        <motion.div
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="md:hidden mt-4 flex flex-col gap-3 bg-white/90 dark:bg-black/80 backdrop-blur-lg p-4 rounded-xl border border-gray-200/50 dark:border-white/10"
-        >
-          {navItems.map((item) => (
-            <button
-              key={item.id}
-              onClick={() => scrollToSection(item.id)}
-              className={`text-left text-sm font-medium rounded-md px-3 py-2 transition-all duration-300 ${
-                activeSection === item.id
-                  ? "text-cyan-600 dark:text-cyan-400 bg-cyan-50 dark:bg-gray-700"
-                  : "text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
-              }`}
-            >
-              {item.label}
-            </button>
-          ))}
-
-          {/* Resume Button for Mobile */}
-          <a
-            href="/PiyushSoni_Resume.pdf"
-            download
-            className="mt-2 text-center text-sm font-medium text-white bg-gradient-to-r from-cyan-600 to-purple-600 py-2 rounded-md shadow-md hover:scale-105 transition-transform"
+      {/* Mobile Menu Overlay */}
+      <AnimatePresence>
+        {isMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95, y: -20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.95, y: -20 }}
+            className="fixed top-20 left-4 right-4 z-40 bg-[#0a0a0a]/90 backdrop-blur-xl border border-white/10 rounded-2xl p-4 sm:hidden shadow-2xl"
           >
-            Download Resume
-          </a>
-        </motion.div>
-      )}
-    </motion.nav>
+            <div className="flex flex-col gap-2">
+              {navItems.map((item) => (
+                <button
+                  key={item.id}
+                  onClick={() => scrollToSection(item.id)}
+                  className={`
+                    flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all
+                    ${
+                      activeSection === item.id
+                        ? "bg-brand-primary/20 text-brand-secondary border border-brand-primary/20"
+                        : "text-gray-400 hover:bg-white/5 hover:text-white"
+                    }
+                  `}
+                >
+                  <item.icon size={18} />
+                  {item.label}
+                </button>
+              ))}
+              
+              {/* Mobile Resume Button */}
+              <ShinyButton
+                href="/PiyushSoni_Resume.pdf"
+                download
+                className="mt-2 w-full justify-center bg-white/10 border-white/20"
+              >
+                <span>Download Resume</span>
+                <Download size={18} />
+              </ShinyButton>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 };
 

@@ -1,70 +1,32 @@
-import React, { useEffect } from "react";
-import anime from "animejs";
+import React, { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { ChevronDown, Github, Linkedin, Mail } from "lucide-react";
 import { useTypewriter } from "react-simple-typewriter";
+import Hero3D from "./Hero3D";
 
 const Hero: React.FC = () => {
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end start"],
+  });
+
+  const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
+  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+  const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.9]);
+
   const [typewriterText] = useTypewriter({
     words: [
       "Web Developer",
+      "Frontend Engineer",
       "Backend Engineer",
       "Full Stack Developer",
-      "Open Source Contributor",
     ],
     loop: true,
     typeSpeed: 90,
     deleteSpeed: 60,
     delaySpeed: 1500,
   });
-
-  // Anime.js Animations
-  useEffect(() => {
-    anime
-      .timeline({ easing: "easeOutExpo", duration: 1000 })
-      .add({
-        targets: ".hero-title span",
-        translateY: [50, 0],
-        opacity: [0, 1],
-        delay: anime.stagger(100),
-      })
-      .add(
-        {
-          targets: ".hero-description",
-          opacity: [0, 1],
-          translateY: [30, 0],
-          duration: 800,
-        },
-        "-=500"
-      )
-      .add(
-        {
-          targets: ".social-icon",
-          scale: [0, 1],
-          delay: anime.stagger(100),
-          duration: 600,
-        },
-        "-=600"
-      )
-      .add(
-        {
-          targets: ".scroll-cta",
-          opacity: [0, 1],
-          translateY: [20, 0],
-          duration: 700,
-        },
-        "-=400"
-      );
-
-    anime({
-      targets: ".bg-blur-blob",
-      scale: [1, 1.05],
-      direction: "alternate",
-      loop: true,
-      easing: "easeInOutSine",
-      duration: 5000,
-      delay: anime.stagger(500),
-    });
-  }, []);
 
   const scrollToAbout = () => {
     const aboutSection = document.getElementById("about");
@@ -75,101 +37,118 @@ const Hero: React.FC = () => {
 
   return (
     <section
+      ref={ref}
       id="home"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100 dark:from-[#060606] dark:to-black text-gray-900 dark:text-white transition-colors duration-500"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-transparent text-white perspective-1000"
     >
-      {/* Glowing Blobs */}
-      <div className="absolute inset-0 pointer-events-none z-0">
-        <div className="absolute top-20 left-10 w-72 h-72 bg-cyan-400/10 dark:bg-cyan-400/20 rounded-full blur-3xl animate-ping-slow bg-blur-blob" />
-        <div className="absolute bottom-24 right-16 w-96 h-96 bg-purple-500/10 dark:bg-purple-500/20 rounded-full blur-2xl bg-blur-blob" />
-        <div className="absolute bottom-[20%] left-[30%] w-64 h-64 bg-pink-500/5 dark:bg-pink-500/10 rounded-full blur-3xl bg-blur-blob" />
-      </div>
+      {/* 3D Background - Parallax */}
+      <motion.div style={{ y: useTransform(scrollYProgress, [0, 1], ["0%", "20%"]) }} className="absolute inset-0 z-0">
+          <Hero3D />
+      </motion.div>
 
-      {/* Twinkling stars - only visible in dark mode */}
-      <div className="absolute inset-0 z-0 dark:bg-[radial-gradient(#ffffff22_1px,transparent_1px)] dark:[background-size:20px_20px] opacity-0 dark:opacity-10 animate-stars transition-opacity duration-500" />
-
-      <div className="relative z-10 text-center max-w-7xl px-4 sm:px-6 lg:px-8 space-y-8">
+      <motion.div 
+        style={{ y, opacity, scale }}
+        className="relative z-10 text-center max-w-7xl px-4 sm:px-6 lg:px-8 space-y-8 backdrop-blur-[2px] rounded-3xl p-8 border border-white/5 bg-black/20 shadow-2xl ring-1 ring-white/10"
+      >
         <div className="space-y-4">
-          <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-gray-900 dark:text-white hero-title">
+          <motion.h1 
+            initial={{ opacity: 0, y: 50, rotateX: -20 }}
+            animate={{ opacity: 1, y: 0, rotateX: 0 }}
+            transition={{ duration: 1, ease: "easeOut" }}
+            className="text-5xl sm:text-6xl lg:text-8xl font-bold font-heading hero-title tracking-tight"
+          >
             Hi, I'm{" "}
-            <span className="bg-gradient-to-r from-cyan-600 via-purple-600 to-cyan-600 dark:from-cyan-400 dark:via-purple-500 dark:to-cyan-400 bg-clip-text text-transparent">
+            <span className="text-brand-secondary inline-block">
               Piyush Soni
             </span>
-          </h1>
-          <div className="text-2xl sm:text-3xl lg:text-4xl text-gray-600 dark:text-gray-300 h-12 flex items-center justify-center">
-            <p>-&nbsp;</p>{" "}
-            <span className="font-light">
+          </motion.h1>
+          
+          <motion.div 
+             initial={{ opacity: 0, scale: 0.8 }}
+             animate={{ opacity: 1, scale: 1 }}
+             transition={{ duration: 0.8, delay: 0.3 }}
+             className="text-2xl sm:text-3xl lg:text-4xl text-gray-300 h-12 flex items-center justify-center font-light"
+          >
+            <span className="opacity-80"> - </span>
+            <span className="mx-3 font-semibold text-brand-secondary">
               {typewriterText}
-              <span className="ml-1 bg-gradient-to-r from-cyan-600 to-purple-600 dark:from-cyan-400 dark:to-purple-400 bg-clip-text text-transparent animate-blink">
-                |
-              </span>
             </span>
-          </div>
+            <span className="text-brand-primary animate-pulse">_</span>
+          </motion.div>
         </div>
 
-        <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto leading-relaxed hero-description">
-          I build fast, aesthetic, and scalable web apps with code and a lot of
-          coffee.
-        </p>
+        <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.5 }}
+            className="text-lg sm:text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed hero-description"
+        >
+          Building scalable, high-performance web applications with modern architecture.
+        </motion.p>
 
         {/* Social Links */}
-        <div className="flex justify-center space-x-6 pt-6">
+        <div className="flex justify-center space-x-6 pt-6 gap-4">
           {[
             {
-              icon: <Github size={24} />,
+              icon: <Github size={28} />,
               link: "https://github.com/piyush64-bit",
+              color: "hover:text-white",
             },
             {
-              icon: <Linkedin size={24} />,
+              icon: <Linkedin size={28} />,
               link: "https://linkedin.com/in/piyush64bit",
+              color: "hover:text-blue-400",
             },
             {
-              icon: <Mail size={24} />,
+              icon: <Mail size={28} />,
               link: "mailto:piiyush.sonii@outlook.com",
+              color: "hover:text-red-400",
             },
           ].map((social, i) => (
-            <a
+            <motion.a
               key={i}
+              initial={{ opacity: 0, scale: 0 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5, delay: 0.8 + i * 0.1 }}
               href={social.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="
-    group relative p-3 rounded-full 
-    bg-white/80 dark:bg-gray-800 
-    text-gray-700 dark:text-gray-300 
-    border border-gray-200/50 dark:border-gray-700 
-    shadow-lg dark:shadow-none 
-    transition-all duration-300 
-    hover:scale-110 hover:shadow-xl
-    hover:bg-gray-100 dark:hover:bg-gray-700
-    overflow-hidden
-  "
+              className={`
+                social-icon group relative p-4 rounded-xl 
+                bg-white/5 
+                text-gray-400 
+                border border-white/10
+                backdrop-blur-md
+                transition-all duration-300 
+                hover:scale-110 hover:-translate-y-1
+                hover:bg-white/10 hover:shadow-[0_0_20px_rgba(112,66,248,0.5)]
+                ${social.color}
+              `}
             >
-              {/* subtle glow ring on hover */}
-              <span className="absolute inset-0 rounded-full bg-gradient-to-tr from-cyan-400/20 to-purple-400/20 opacity-0 group-hover:opacity-100 blur-md transition-opacity duration-300 -z-10"></span>
-
-              {/* animate icon */}
-              <span className="flex items-center justify-center transition-transform duration-300 group-hover:rotate-12 group-hover:scale-125">
-                {social.icon}
-              </span>
-            </a>
+              {social.icon}
+            </motion.a>
           ))}
         </div>
 
         {/* Scroll Down CTA */}
-        <div className="pt-12 scroll-cta">
+        <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 1.2 }}
+            className="pt-16 scroll-cta"
+        >
           <button
             onClick={scrollToAbout}
-            className="group flex flex-col items-center space-y-2 text-gray-600 dark:text-gray-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition-all duration-300"
+            className="group flex flex-col items-center space-y-2 text-gray-500 hover:text-brand-secondary transition-all duration-300"
           >
-            <span className="text-sm font-medium">Scroll to explore</span>
+            <span className="text-xs font-medium uppercase tracking-[0.2em]">Explore</span>
             <ChevronDown
               size={24}
-              className="animate-bounce group-hover:text-cyan-600 dark:group-hover:text-cyan-400"
+              className="animate-bounce group-hover:text-brand-secondary group-hover:drop-shadow-[0_0_8px_rgba(0,243,255,0.8)]"
             />
           </button>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </section>
   );
 };

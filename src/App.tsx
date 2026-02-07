@@ -1,14 +1,16 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, lazy, Suspense } from 'react';
+import SmoothScroll from './components/SmoothScroll';
 import Navigation from './components/Navigation';
 import Hero from './components/Hero';
-import About from './components/About';
-import Skills from './components/Skills';
-import Certifications from './components/Certifications';
-import Projects from './components/Projects';
-import Contact from './components/Contact';
 import Footer from './components/Footer';
 import LoaderWrapper from './components/LoaderWrapper';
-import { ThemeProvider } from './context/ThemeContext';
+import Background3D from './components/Background3D';
+
+const About = lazy(() => import('./components/About'));
+const Skills = lazy(() => import('./components/Skills'));
+const Certifications = lazy(() => import('./components/Certifications'));
+const Projects = lazy(() => import('./components/Projects'));
+const Contact = lazy(() => import('./components/Contact'));
 
 function App() {
   const [activeSection, setActiveSection] = useState('home');
@@ -36,18 +38,21 @@ function App() {
   }, []);
 
   return (
-    <ThemeProvider> 
-      <LoaderWrapper>
+    <LoaderWrapper>
+      <SmoothScroll>
         <Navigation activeSection={activeSection} setActiveSection={setActiveSection} />
         <Hero />
-        <About />
-        <Skills />
-        <Certifications />
-        <Projects />
-        <Contact />
+        <Background3D />
+        <Suspense fallback={<div className="min-h-screen bg-transparent" />}>
+          <About />
+          <Skills />
+          <Certifications />
+          <Projects />
+          <Contact />
+        </Suspense>
         <Footer />
-      </LoaderWrapper>
-    </ThemeProvider>
+      </SmoothScroll>
+    </LoaderWrapper>
   );
 }
 
