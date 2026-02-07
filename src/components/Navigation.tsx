@@ -100,7 +100,7 @@ const Navigation: React.FC<NavigationProps> = ({
             
             {/* Desktop Resume Button */}
             <ShinyButton
-              href="/PiyushSoni_Resume.pdf"
+              href="/Piyush_Resume.pdf"
               download
               className="ml-2 bg-white/10 border-white/20 hover:bg-white/20"
             >
