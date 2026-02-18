@@ -10,10 +10,10 @@ export default {
       },
       colors: {
         brand: {
-          dark: '#030014', // Deep Space Black
-          primary: '#7042f8', // Electric Purple
-          secondary: '#00f3ff', // Neon Cyan
-          accent: '#2A0E61', // Deep Purple
+          dark: '#000000', // Pitch Black
+          primary: '#f8ad35ff', // Gold
+          secondary: '#fdc33cff', // Olive
+          accent: '#282A3A', // Gunmetal
         },
       },
       backgroundImage: {

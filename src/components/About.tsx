@@ -1,7 +1,7 @@
 import React from "react";
 import { Timeline } from "./ui/Timeline";
 import Reveal3D from "./ui/Reveal3D";
-import Profile from "../assets/Profile.jpg";
+import Profile from "../assets/Pro-pic.png";
 import { Server, Layout, Database, Shield, Zap, Code2 } from "lucide-react";
 
 const timelineData = [

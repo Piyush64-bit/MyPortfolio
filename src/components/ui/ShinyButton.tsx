@@ -9,16 +9,16 @@ interface ShinyButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement>
   download?: boolean;
 }
 
-const ShinyButton: React.FC<ShinyButtonProps> = ({ 
-  children, 
-  className = "", 
-  onClick, 
+const ShinyButton: React.FC<ShinyButtonProps> = ({
+  children,
+  className = "",
+  onClick,
   href,
   download,
-  ...props 
+  ...props
 }) => {
   const Component = href ? motion.a : motion.button;
-  
+
   return (
     // @ts-ignore
     <Component
@@ -46,10 +46,10 @@ const ShinyButton: React.FC<ShinyButtonProps> = ({
       }}
       className={`
         relative overflow-hidden rounded-full px-6 py-2 
-        bg-slate-950 text-white font-medium
-        border border-slate-800
+        bg-black text-white font-medium
+        border border-white/10
         transition-all duration-300
-        hover:border-slate-600 hover:shadow-[0_0_20px_rgba(255,255,255,0.1)]
+        hover:border-brand-primary/50 hover:shadow-[0_0_20px_rgba(198,151,73,0.3)]
         group
         ${className}
       `}
@@ -57,15 +57,12 @@ const ShinyButton: React.FC<ShinyButtonProps> = ({
       <span className="relative z-10 flex items-center justify-center gap-2">
         {children}
       </span>
-      
+
       {/* Shine Effect */}
-      <span 
-        className="absolute inset-0 -z-10 block rounded-full bg-[linear-gradient(-75deg,transparent_calc(var(--x)+20%),rgba(255,255,255,0.1)_calc(var(--x)+25%),rgba(255,255,255,0.5)_calc(var(--x)+50%),rgba(255,255,255,0.1)_calc(var(--x)+75%),transparent_calc(var(--x)+100%))]"
-      />
-      
+      <span className="absolute inset-0 -z-10 block rounded-full bg-[linear-gradient(-75deg,transparent_calc(var(--x)+20%),rgba(255,255,255,0.1)_calc(var(--x)+25%),rgba(255,255,255,0.5)_calc(var(--x)+50%),rgba(255,255,255,0.1)_calc(var(--x)+75%),transparent_calc(var(--x)+100%))]" />
+
       {/* Glow Effect on Hover */}
-      <span className="absolute inset-0 -z-20 bg-gradient-to-r from-indigo-500/0 via-purple-500/0 to-cyan-500/0 opacity-0 group-hover:opacity-20 group-hover:from-indigo-500/20 group-hover:via-purple-500/20 group-hover:to-cyan-500/20 transition-all duration-500 rounded-full blur-md" />
-      
+      <span className="absolute inset-0 -z-20 bg-gradient-to-r from-brand-primary/0 via-brand-secondary/0 to-brand-primary/0 opacity-0 group-hover:opacity-20 group-hover:from-brand-primary/20 group-hover:via-brand-secondary/20 group-hover:to-brand-primary/20 transition-all duration-500 rounded-full blur-md" />
     </Component>
   );
 };
