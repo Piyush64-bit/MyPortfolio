@@ -1,19 +1,44 @@
-import React, { useRef } from "react";
-import { ExternalLink, Github } from "lucide-react";
+import React from "react";
+import { ExternalLink, Github, BookOpen, GitBranch, Star } from "lucide-react";
 import Venue from "../assets/Venue.png";
 import QuickScreen from "../assets/QuickScreen.png";
-import { motion, useMotionTemplate, useMotionValue, useSpring } from "framer-motion";
+import { motion } from "framer-motion";
 import Reveal3D from "./ui/Reveal3D";
 
-const projects = [
+interface Project {
+  title: string;
+  description: string;
+  image: string;
+  tags: string[];
+  githubUrl: string;
+  liveUrl: string;
+  featured?: boolean;
+  badges?: string[];
+  apiDocsUrl?: string;
+  architectureId?: string;
+}
+
+const projects: Project[] = [
   {
     title: "VENUE – Event & Entertainment Booking Platform",
     description:
-      "Production-grade event booking platform supporting multi-role access, secure authentication, transactional slot booking, and a fair waitlist promotion system to prevent overbooking.",
+      "Event booking platform with multi-role access, JWT authentication, transactional slot booking, and a waitlist promotion system to prevent overbooking. Backend built with ACID transactions, Redis rate limiting, and a modular domain-driven structure.",
     image: Venue,
-    tags: ["MERN Stack", "MongoDB Transactions", "JWT Auth", "Socket.IO"],
+    tags: [
+      "MERN Stack",
+      "MongoDB Transactions",
+      "Redis",
+      "JWT Auth",
+      "Socket.IO",
+      "Swagger/OpenAPI",
+      "Docker",
+    ],
     githubUrl: "https://github.com/Piyush64-bit/VENUE",
     liveUrl: "https://venueapp.vercel.app/",
+    featured: true,
+    badges: ["ACID Transactions", "Redis Rate Limiting", "Swagger Docs"],
+    apiDocsUrl: "https://venue-z8ti.onrender.com/docs/",
+    architectureId: "architecture",
   },
   {
     title: "QuickScreen – Real-Time Screen Sharing App",
@@ -26,125 +51,166 @@ const projects = [
   },
 ];
 
-const ProjectCard = ({ project }: { project: any }) => {
-  const ref = useRef<HTMLDivElement>(null);
-
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-
-  const xSpring = useSpring(x);
-  const ySpring = useSpring(y);
-
-  const transform = useMotionTemplate`rotateX(${xSpring}deg) rotateY(${ySpring}deg)`;
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!ref.current) return;
-
-    const rect = ref.current.getBoundingClientRect();
-
-    const width = rect.width;
-    const height = rect.height;
-
-    const mouseX = (e.clientX - rect.left) * 32.5;
-    const mouseY = (e.clientY - rect.top) * 32.5;
-
-    const rX = (mouseY / height - 32.5 / 2) * -1;
-    const rY = mouseX / width - 32.5 / 2;
-
-    x.set(rX);
-    y.set(rY);
-  };
-
-  const handleMouseLeave = () => {
-    x.set(0);
-    y.set(0);
+const ProjectCard = ({
+  project,
+  index,
+}: {
+  project: Project;
+  index: number;
+}) => {
+  const scrollToSection = (id: string) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
-    <motion.div
-      ref={ref}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      style={{
-        transformStyle: "preserve-3d",
-        transform,
-      }}
-      className="group relative rounded-xl bg-gray-900/40 border border-white/10 p-6 shadow-2xl transition-all duration-200 hover:shadow-cyan-500/20"
-    >
-        <div style={{ transform: "translateZ(50px)" }} className="relative overflow-hidden rounded-lg mb-6">
-            <img
-                src={project.image}
-                alt={project.title}
-                className="w-full h-48 object-cover rounded-lg group-hover:scale-110 transition-transform duration-500"
-            />
-            <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
-                 <a
-                    href={project.githubUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-3 bg-white/10 backdrop-blur-md rounded-full text-white hover:bg-white/20 transition-all hover:scale-110"
-                  >
-                    <Github size={20} />
-                  </a>
-                  <a
-                    href={project.liveUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-3 bg-white/10 backdrop-blur-md rounded-full text-white hover:bg-white/20 transition-all hover:scale-110"
-                  >
-                    <ExternalLink size={20} />
-                  </a>
-            </div>
+    <Reveal3D delay={index * 0.15} enableParallax parallaxSpeed={0.02}>
+      <motion.div
+        whileHover={{ y: -3 }}
+        transition={{ duration: 0.3, ease: "easeOut" }}
+        className={`
+          group relative rounded-2xl overflow-hidden border transition-all duration-300
+          ${
+            project.featured
+              ? "border-brand-primary/30 bg-gray-900/60 shadow-2xl shadow-brand-primary/10 hover:border-brand-primary/50 hover:shadow-brand-primary/20"
+              : "border-white/10 bg-gray-900/40 shadow-xl hover:border-white/20"
+          }
+        `}
+      >
+        {/* ★ Featured badge */}
+        {project.featured && (
+          <div className="absolute top-4 right-4 z-20 flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/60 border border-brand-primary/40 backdrop-blur-sm">
+            <Star size={11} className="text-brand-primary fill-brand-primary" />
+            <span className="text-brand-primary text-xs font-semibold tracking-wide">
+              Featured
+            </span>
+          </div>
+        )}
+
+        {/* Screenshot — full, uncropped */}
+        <div className="w-full bg-black/40 border-b border-white/5">
+          <img
+            src={project.image}
+            alt={project.title}
+            className="w-full object-contain transition-transform duration-500 group-hover:scale-[1.02]"
+          />
         </div>
 
-      <div style={{ transform: "translateZ(20px)" }}>
-        <h3 className="text-2xl font-bold font-heading text-white mb-2 group-hover:text-brand-primary transition-colors">
-          {project.title}
-        </h3>
-        <p className="text-gray-400 text-sm leading-relaxed mb-4">
-          {project.description}
-        </p>
-        <div className="flex flex-wrap gap-2">
-          {project.tags.map((tag: string, i: number) => (
-            <span
-              key={i}
-              className="px-3 py-1 bg-brand-primary/10 text-brand-secondary text-xs rounded-full border border-brand-primary/20"
+        {/* Content */}
+        <div className="p-6 md:p-8">
+          {/* Tech badges (featured only) */}
+          {project.featured && project.badges && (
+            <div className="flex flex-wrap gap-2 mb-4">
+              {project.badges.map((badge, i) => (
+                <span
+                  key={i}
+                  className="px-2.5 py-0.5 text-[11px] font-medium rounded-full bg-brand-primary/10 text-brand-secondary border border-brand-primary/20"
+                >
+                  {badge}
+                </span>
+              ))}
+            </div>
+          )}
+
+          {/* Title */}
+          <h3
+            className={`font-bold font-heading mb-3 transition-colors duration-300 ${
+              project.featured
+                ? "text-2xl text-white group-hover:text-brand-secondary"
+                : "text-xl text-white group-hover:text-gray-200"
+            }`}
+          >
+            {project.title}
+          </h3>
+
+          {/* Description */}
+          <p className="text-gray-400 text-sm leading-relaxed mb-5">
+            {project.description}
+          </p>
+
+          {/* Tags */}
+          <div className="flex flex-wrap gap-1.5 mb-6">
+            {project.tags.map((tag, i) => (
+              <span
+                key={i}
+                className="px-2.5 py-1 bg-brand-primary/10 text-brand-secondary text-xs rounded-full border border-brand-primary/20"
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+
+          {/* Actions */}
+          <div
+            className={`flex flex-wrap gap-2.5 pt-5 border-t ${
+              project.featured ? "border-brand-primary/10" : "border-white/5"
+            }`}
+          >
+            {project.apiDocsUrl && (
+              <a
+                href={project.apiDocsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-brand-primary/10 border border-brand-primary/25 text-brand-secondary text-xs font-medium hover:bg-brand-primary/20 transition-all duration-200 hover:scale-105"
+              >
+                <BookOpen size={13} />
+                API Docs
+              </a>
+            )}
+            {project.architectureId && (
+              <button
+                onClick={() => scrollToSection(project.architectureId!)}
+                className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-gray-300 text-xs font-medium hover:bg-white/10 hover:text-white transition-all duration-200 hover:scale-105"
+              >
+                <GitBranch size={13} />
+                Architecture
+              </button>
+            )}
+            <a
+              href={project.githubUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-gray-300 text-xs font-medium hover:bg-white/10 hover:text-white transition-all duration-200 hover:scale-105"
             >
-              {tag}
-            </span>
-          ))}
+              <Github size={13} />
+              GitHub
+            </a>
+            <a
+              href={project.liveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-gray-300 text-xs font-medium hover:bg-white/10 hover:text-white transition-all duration-200 hover:scale-105"
+            >
+              <ExternalLink size={13} />
+              Live Demo
+            </a>
+          </div>
         </div>
-      </div>
-    </motion.div>
+      </motion.div>
+    </Reveal3D>
   );
 };
 
 const Projects: React.FC = () => {
   return (
-    <section id="projects" className="py-20 bg-transparent relative overflow-hidden">
-
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <Reveal3D className="text-center mb-20" direction="down">
+    <section
+      id="projects"
+      className="py-20 bg-transparent relative overflow-hidden"
+    >
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <Reveal3D className="text-center mb-16" direction="down">
           <h2 className="text-4xl sm:text-5xl font-bold font-heading text-white mb-6">
             Featured <span className="text-brand-secondary">Projects</span>
           </h2>
           <p className="text-gray-400 max-w-2xl mx-auto text-lg">
-            A showcase of my technical capabilities and engineering practices.
+            Systems built with real architectural decisions — authentication,
+            transactions, caching, and deployment.
           </p>
         </Reveal3D>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-10 max-w-5xl mx-auto perspective-1000">
+        {/* Single column — both cards full width, stacked */}
+        <div className="flex flex-col gap-8">
           {projects.map((project, index) => (
-            <Reveal3D
-                key={index}
-                delay={index * 0.2}
-                enableParallax={true}
-                parallaxSpeed={index % 2 === 0 ? 0.05 : 0.02}
-                className="h-full"
-            >
-                <ProjectCard project={project} />
-            </Reveal3D>
+            <ProjectCard key={index} project={project} index={index} />
           ))}
         </div>
       </div>

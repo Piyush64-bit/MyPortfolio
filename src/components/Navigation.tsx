@@ -2,7 +2,20 @@
 
 import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Code2, Home, User, Cpu, Award, FolderGit2, Mail, Download } from "lucide-react";
+import {
+  Menu,
+  X,
+  Code2,
+  Home,
+  User,
+  Cpu,
+  Award,
+  FolderGit2,
+  Mail,
+  Download,
+  Layers,
+  GitBranch,
+} from "lucide-react";
 import ShinyButton from "./ui/ShinyButton";
 
 interface NavigationProps {
@@ -19,10 +32,12 @@ const Navigation: React.FC<NavigationProps> = ({
 
   const navItems = [
     { id: "home", label: "Home", icon: Home },
+    { id: "engineering", label: "Highlights", icon: Layers },
+    { id: "projects", label: "Projects", icon: FolderGit2 },
+    { id: "architecture", label: "Architecture", icon: GitBranch },
     { id: "about", label: "About", icon: User },
     { id: "skills", label: "Skills", icon: Cpu },
     { id: "certifications", label: "Certs", icon: Award },
-    { id: "projects", label: "Projects", icon: FolderGit2 },
     { id: "contact", label: "Contact", icon: Mail },
   ];
 
@@ -49,11 +64,11 @@ const Navigation: React.FC<NavigationProps> = ({
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
-        className={`fixed top-4 sm:top-6 left-1/2 -translate-x-1/2 z-50 w-[95%] sm:w-auto max-w-3xl transition-all duration-300`}
+        className={`fixed top-4 sm:top-6 left-1/2 -translate-x-1/2 z-50 w-[95%] sm:w-auto max-w-4xl transition-all duration-300`}
       >
         <div
           className={`
-            flex items-center justify-between sm:justify-center gap-1 sm:gap-2 px-4 py-2 sm:px-6 sm:py-3 rounded-full
+            flex items-center justify-between sm:justify-center gap-1 sm:gap-1 px-4 py-2 sm:px-5 sm:py-3 rounded-full
             ${
               isScrolled
                 ? "bg-black/80 backdrop-blur-xl border border-white/10 shadow-2xl shadow-brand-primary/10"
@@ -62,15 +77,18 @@ const Navigation: React.FC<NavigationProps> = ({
           `}
         >
           {/* Logo - Mobile Only */}
-          <div className="flex sm:hidden items-center gap-2 mr-auto" onClick={() => scrollToSection('home')}>
-             <div className="p-1.5 rounded-lg bg-brand-primary/20">
-               <Code2 size={18} className="text-brand-secondary" />
-             </div>
-             <span className="font-bold text-white text-sm">Piyush</span>
+          <div
+            className="flex sm:hidden items-center gap-2 mr-auto"
+            onClick={() => scrollToSection("home")}
+          >
+            <div className="p-1.5 rounded-lg bg-brand-primary/20">
+              <Code2 size={18} className="text-brand-secondary" />
+            </div>
+            <span className="font-bold text-white text-sm">Piyush</span>
           </div>
 
           {/* Desktop Nav Items */}
-          <div className="hidden sm:flex items-center gap-1">
+          <div className="hidden sm:flex items-center gap-0.5">
             {navItems.map((item) => {
               const isActive = activeSection === item.id;
               return (
@@ -78,7 +96,7 @@ const Navigation: React.FC<NavigationProps> = ({
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
                   className={`
-                    relative px-4 py-2 rounded-full text-sm font-medium transition-all duration-300
+                    relative px-3 py-2 rounded-full text-xs font-medium transition-all duration-300
                     hover:text-white
                     ${isActive ? "text-white" : "text-gray-400"}
                   `}
@@ -87,25 +105,28 @@ const Navigation: React.FC<NavigationProps> = ({
                     <motion.div
                       layoutId="nav-pill"
                       className="absolute inset-0 bg-white/10 rounded-full"
-                      transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 300,
+                        damping: 30,
+                      }}
                     />
                   )}
-                  <span className="relative z-10 flex items-center gap-2">
-                    {/* <item.icon size={14} /> */}
+                  <span className="relative z-10 flex items-center gap-1.5">
                     {item.label}
                   </span>
                 </button>
               );
             })}
-            
+
             {/* Desktop Resume Button */}
             <ShinyButton
               href="/Piyush_Resume.pdf"
               download
-              className="ml-2 bg-white/10 border-white/20 hover:bg-white/20"
+              className="ml-2 bg-white/10 border-white/20 hover:bg-white/20 text-xs"
             >
               <span>Resume</span>
-              <Download size={14} />
+              <Download size={13} />
             </ShinyButton>
           </div>
 
@@ -146,7 +167,7 @@ const Navigation: React.FC<NavigationProps> = ({
                   {item.label}
                 </button>
               ))}
-              
+
               {/* Mobile Resume Button */}
               <ShinyButton
                 href="/PiyushSoni_Resume.pdf"

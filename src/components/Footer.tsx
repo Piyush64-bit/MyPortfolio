@@ -39,7 +39,7 @@ const Footer: React.FC = () => {
                 {"Piyush Soni."}
               </button>
               <p className="text-gray-400 mt-2 text-sm max-w-xs">
-                Building the future of the web, one pixel at a time.
+                Building scalable web systems, from API to interface.
               </p>
             </div>
   
